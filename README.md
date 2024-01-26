@@ -22,3 +22,7 @@ Here is the procedure to update the app Icon:
 
 3) Run the command `flutter pub run flutter_launcher_icons`
 
+## Translation
+
+To add translation text, modify the files in the `lib/l10n` folder. When modifying those files, run the `flutter gen-l10n` command.
+
