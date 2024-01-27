@@ -11,8 +11,7 @@ class Register extends HookWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    double screenWidth = MediaQuery.of(context).size.width;
-    double formWidth = screenWidth * 0.8;
+    double formWidth = 300;
 
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
