@@ -21,18 +21,18 @@ class CardSummary extends StatelessWidget {
         color: Colors.white,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
         child: Container(
-          width: 110,
-          height: 110,
-          padding: const EdgeInsets.all(8.0),
+          width: 100,
+          height: 90,
+          padding: const EdgeInsets.all(4.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(topIcon, color: Colors.green, size: 25),
-              const SizedBox(height: 16.0),
+              Icon(topIcon, color: Colors.green, size: 21),
+              const SizedBox(height: 8.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,17 +43,16 @@ class CardSummary extends StatelessWidget {
                       color: Colors.black54,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold,
-                      height: 1.2,
+                      height: 1,
                     ),
                   ),
-                  // SizedBox(height: 2.0),
                   Text(
                     descriptionText,
                     style: const TextStyle(
                       color: Colors.black54,
                       fontWeight: FontWeight.bold,
                       fontSize: 14.0,
-                      height: 1.2,
+                      height: 1,
                     ),
                   ),
                   Text(
