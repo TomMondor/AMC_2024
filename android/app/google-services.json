@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "873965666368",
+    "project_id": "amc-2024-cd83c",
+    "storage_bucket": "amc-2024-cd83c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873965666368:android:02e741cf292dc45b345fa5",
+        "android_client_info": {
+          "package_name": "bonne.question.amc_2024"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBO6q-NdnOxv1oZCtcKlw-TvP7mbFDqcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
