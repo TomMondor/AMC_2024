@@ -1,7 +1,6 @@
 import 'package:amc_2024/src/view/account/register.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
 import '../src/view/account/login.dart';
 import '../src/view/account/user_info.dart';
 import '../src/view/startup/startup.dart';
