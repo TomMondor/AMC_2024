@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../routes/routes.dart';
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -53,9 +55,9 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            const TextButton(
-                onPressed: null,
-                child: Text(
+            TextButton(
+                onPressed: () => Navigator.pushReplacementNamed(context, Routes.register.name),
+                child: const Text(
                     'Don\'t have an account? Sign up here.',
                     style: TextStyle(color: Colors.blueAccent),
                 ),
