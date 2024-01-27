@@ -2,7 +2,9 @@ import 'package:amc_2024/src/view/account/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../injection_container.dart';
 import '../../../routes/routes.dart';
+import '../../application/auth_service.dart';
 import '../../exceptions/exceptions.dart';
 import '../widgets/error_dialog.dart';
 
@@ -29,17 +31,22 @@ class Login extends HookWidget {
 
         try {
           isLoading.value = false;
+          AuthService authService = locator<AuthService>();
+          print(email);
+          await authService.login(email, password);
+
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.home.name);
           }
-        } on AuthenticationException {
+
+        } on AuthenticationException catch (e) {
           print("WTF");
           isLoading.value = false;
           showDialog(
             context: context,
-            builder: (BuildContext context) => const ErrorDialog(
+            builder: (BuildContext context) => ErrorDialog(
               title: "Oops",
-              message: "An error occured.",
+              message: e.message,
               buttonText: "OK",
             ),
           );
@@ -57,7 +64,7 @@ class Login extends HookWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  "Register",
+                  "EcoHub",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -109,7 +116,7 @@ class Login extends HookWidget {
               ),
               TextButton(
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, Routes.login.name),
+                    Navigator.pushReplacementNamed(context, Routes.register.name),
                 child: const Text(
                   "Don't have an account? Register here",
                   style: TextStyle(color: Colors.blueAccent),

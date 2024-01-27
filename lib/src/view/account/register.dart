@@ -5,6 +5,9 @@ import 'package:amc_2024/src/view/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../injection_container.dart';
+import '../../application/auth_service.dart';
+
 class Register extends HookWidget {
   const Register({super.key});
 
@@ -28,17 +31,21 @@ class Register extends HookWidget {
 
         try {
           isLoading.value = false;
+          AuthService authService = locator<AuthService>();
+          print(email);
+          await authService.register(email, password);
+
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.home.name);
           }
-        } on AuthenticationException {
+        } on AuthenticationException catch (e) {
           print("WTF");
           isLoading.value = false;
           showDialog(
             context: context,
-            builder: (BuildContext context) => const ErrorDialog(
+            builder: (BuildContext context) => ErrorDialog(
               title: "Oops",
-              message: "An error occured.",
+              message: e.message,
               buttonText: "OK",
             ),
           );

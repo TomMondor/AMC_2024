@@ -17,5 +17,9 @@ String? validatePassword(String? value) {
     return "The password is required.";
   }
 
+  if (value.length < 6) {
+    return "The password must be at least 6 characters.";
+  }
+
   return null;
 }
