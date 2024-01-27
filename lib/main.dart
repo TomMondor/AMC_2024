@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'firebase_options.dart';
 import 'injection_container.dart';
+import 'routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      home: const MyHomePage(title: 'Flutter demo'),
+      initialRoute: Routes.startup.name,
+      routes: appRoutes,
     );
   }
 }

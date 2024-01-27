@@ -44,6 +44,8 @@ PODS:
   - GTMSessionFetcher/Core (3.3.1)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
+  - rive_common (0.0.1):
+    - Flutter
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -52,6 +54,7 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - rive_common (from `.symlinks/plugins/rive_common/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 SPEC REPOS:
@@ -73,6 +76,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  rive_common:
+    :path: ".symlinks/plugins/rive_common/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
@@ -89,6 +94,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 8a1b34ad97ebe6f909fb8b9b77fba99943007556
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  rive_common: 3a4c254c6e4db7e4b9e05daeb3d1f47ae4f7bf76
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
 
 PODFILE CHECKSUM: 539dc5b79cf91b1c440774eb8dbab972bb2407fb
