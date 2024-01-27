@@ -1,5 +1,6 @@
 import 'package:amc_2024/routes/routes.dart';
 import 'package:amc_2024/src/exceptions/exceptions.dart';
+import 'package:amc_2024/src/view/account/validators.dart';
 import 'package:amc_2024/src/view/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,29 +19,7 @@ class Register extends HookWidget {
 
     final isLoading = useState(false);
 
-    String? validateEmail(String? value) {
-      if (value == null || value.isEmpty) {
-        return "The email is required.";
-      }
-
-      if (!RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-      ).hasMatch(value)) {
-        return "The email is invalid.";
-      }
-
-      return null;
-    }
-
-    String? validatePassword(String? value) {
-      if (value == null || value.isEmpty) {
-        return "The password is required.";
-      }
-
-      return null;
-    }
-
-    Future<void> login() async {
+    Future<void> register() async {
       final email = emailController.text;
       final password = passwordController.text;
 
@@ -48,7 +27,6 @@ class Register extends HookWidget {
         isLoading.value = true;
 
         try {
-          // await authService.login(email, password);
           isLoading.value = false;
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.home.name);
@@ -57,82 +35,89 @@ class Register extends HookWidget {
           print("WTF");
           isLoading.value = false;
           showDialog(
-              context: context,
-              builder: (BuildContext context) => const ErrorDialog(
-                    title: "Oops",
-                    message: "An error occured.",
-                    buttonText: "OK",
-                  ));
+            context: context,
+            builder: (BuildContext context) => const ErrorDialog(
+              title: "Oops",
+              message: "An error occured.",
+              buttonText: "OK",
+            ),
+          );
         }
       }
     }
 
     return Scaffold(
-        body: Center(
-            child: Form(
-      key: formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Register",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: SizedBox(
-              width: formWidth,
-              height: 50,
-              child: TextFormField(
-                textInputAction: TextInputAction.next,
-                controller: emailController,
-                validator: validateEmail,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
+      body: Center(
+        child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "Register",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: SizedBox(
-              width: formWidth,
-              height: 50,
-              child: TextFormField(
-                textInputAction: TextInputAction.done,
-                controller: passwordController,
-                validator: validatePassword,
-                keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: SizedBox(
+                  width: formWidth,
+                  height: 50,
+                  child: TextFormField(
+                    textInputAction: TextInputAction.next,
+                    controller: emailController,
+                    validator: validateEmail,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: SizedBox(
+                  width: formWidth,
+                  height: 50,
+                  child: TextFormField(
+                    textInputAction: TextInputAction.done,
+                    controller: passwordController,
+                    validator: validatePassword,
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                    width: formWidth,
+                    child: ElevatedButton(
+                        // ignore: avoid_print
+                        onPressed: () => register(),
+                        style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            shape: const BeveledRectangleBorder()),
+                        child: const Text("Register"))),
+              ),
+              TextButton(
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, Routes.login.name),
+                child: const Text(
+                  "Already have an account?",
+                  style: TextStyle(color: Colors.blueAccent),
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-                width: formWidth,
-                child: ElevatedButton(
-                    // ignore: avoid_print
-                    onPressed: () => login(),
-                    style: ElevatedButton.styleFrom(foregroundColor: Colors.black, shape: const BeveledRectangleBorder()),
-                    child: const Text("Register"))),
-          ),
-          TextButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, Routes.login.name),
-              child: const Text(
-                "Already have an account?",
-                style: TextStyle(color: Colors.blueAccent),
-              ))
-        ],
+        ),
       ),
-    )));
+    );
   }
 }
