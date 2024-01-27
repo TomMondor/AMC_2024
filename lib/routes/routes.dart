@@ -1,4 +1,5 @@
 import 'package:amc_2024/src/view/account/register.dart';
+import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -11,6 +12,7 @@ enum Routes {
   startup,
   login,
   register,
+  electricity
 }
 
 extension RoutesExtension on Routes {
@@ -24,6 +26,8 @@ extension RoutesExtension on Routes {
         return '/login';
       case Routes.register:
         return '/register';
+      case Routes.electricity:
+        return '/electricity';
       default:
         return '/';
     }
@@ -36,4 +40,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   Routes.startup.name: (context) => const Startup(),
   Routes.login.name: (context) => const Login(),
   Routes.register.name: (context) => const Register(),
+  Routes.electricity.name: (context) => const Electricity(),
 };
