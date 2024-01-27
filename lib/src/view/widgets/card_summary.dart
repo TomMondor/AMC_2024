@@ -1,3 +1,4 @@
+import 'package:amc_2024/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,48 +20,44 @@ class CardSummary extends StatelessWidget {
     return Center(
       child: Card(
         color: Colors.white,
+        surfaceTintColor: Colors.transparent,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Container(
-          width: 100,
-          height: 90,
-          padding: const EdgeInsets.all(4.0),
+          width: 96,
+          height: 96,
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(topIcon, color: Colors.green, size: 21),
-              const SizedBox(height: 8.0),
+              Icon(topIcon, color: kcSecondary, size: 20),
+              const Spacer(),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     titleText,
-                    style: const TextStyle(
-                      color: Colors.black54,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold,
-                      height: 1,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: kcPrimaryVariant,
+                        ),
                   ),
                   Text(
                     descriptionText,
-                    style: const TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14.0,
-                      height: 1,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: kcPrimaryVariant,
+                        ),
                   ),
                   Text(
                     categoryText,
                     style: const TextStyle(
-                      color: Colors.white70,
+                      color: kcLightSecondary,
                       fontWeight: FontWeight.bold,
                       fontSize: 12.0,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

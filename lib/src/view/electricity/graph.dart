@@ -50,7 +50,7 @@ class CoolChart extends HookWidget {
         details5,
       ];
 
-      int maxY = details.map((detail) => detail.values.demandeTotal).reduce((max, current) => max! > current! ? max : current) as int;
+      int maxY = details.map((detail) => detail.values.demandeTotal).reduce((max, current) => max! > current! ? max : current)!.toInt();
 
       HydroData newData =
           HydroData(dateStart: hydroData.dateStart, dateEnd: hydroData.dateEnd, mostRecentIndex: index, details: details, maxY: maxY);

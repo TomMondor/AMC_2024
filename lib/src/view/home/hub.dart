@@ -1,11 +1,7 @@
+import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:amc_2024/src/view/home/home.dart';
-import 'package:amc_2024/src/view/widgets/card_carbon.dart';
-import 'package:amc_2024/src/view/widgets/card_summary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../widgets/card_tip.dart';
 
 class MyHubPage extends StatefulWidget {
   const MyHubPage({super.key, required this.title});
@@ -25,9 +21,11 @@ class _MyHubPageState extends State<MyHubPage> {
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(name: "Clement"),
     const Electricity(),
-    const Text(
-      'Index 3: Alimentation',
-      style: optionStyle,
+    const SafeArea(
+      child: Text(
+        'Index 3: Alimentation',
+        style: optionStyle,
+      ),
     ),
     const Text(
       'Index 4: Transport',
@@ -44,10 +42,6 @@ class _MyHubPageState extends State<MyHubPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -55,28 +49,36 @@ class _MyHubPageState extends State<MyHubPage> {
             _selectedIndex = index;
           });
         },
-        indicatorColor: Colors.amber,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        elevation: 3,
+        shadowColor: kcLightSecondary,
         selectedIndex: _selectedIndex,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home, color: kcPrimary,),
+            icon: Icon(Icons.home, color: kcLightSecondary,),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.lightbulb),
+            selectedIcon: Icon(Icons.lightbulb, color: kcPrimary,),
+            icon: Icon(Icons.lightbulb, color: kcLightSecondary,),
             label: 'Electricity',
           ),
           NavigationDestination(
-            icon: Icon(Icons.hub),
+            selectedIcon: Icon(Icons.hub, color: kcPrimary,),
+            icon: Icon(Icons.hub, color: kcLightSecondary,),
             label: 'Hub',
           ),
           NavigationDestination(
-            icon: Icon(Icons.shopping_basket),
+            selectedIcon: Icon(Icons.shopping_basket, color: kcPrimary,),
+            icon: Icon(Icons.shopping_basket, color: kcLightSecondary,),
             label: 'Alimentation',
           ),
           NavigationDestination(
-            icon: Icon(Icons.directions_car_filled),
+            selectedIcon: Icon(Icons.directions_car_filled, color: kcPrimary,),
+            icon: Icon(Icons.directions_car_filled, color: kcLightSecondary,),
             label: 'Transport',
           ),
         ],

@@ -5,8 +5,12 @@ import 'package:amc_2024/src/view/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../helpers/ui_helpers.dart';
 import '../../../injection_container.dart';
 import '../../application/auth_service.dart';
+import '../../theme/colors.dart';
+import '../widgets/bottom_button.dart';
+import '../widgets/text_input.dart';
 
 class Register extends HookWidget {
   const Register({super.key});
@@ -14,8 +18,6 @@ class Register extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-    double formWidth = 300;
 
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
@@ -36,7 +38,7 @@ class Register extends HookWidget {
           await authService.register(email, password);
 
           if (context.mounted) {
-            Navigator.pushReplacementNamed(context, Routes.home.name);
+            Navigator.pushReplacementNamed(context, Routes.hub.name);
           }
         } on AuthenticationException catch (e) {
           print("WTF");
@@ -55,73 +57,74 @@ class Register extends HookWidget {
 
     return Scaffold(
       body: Center(
-        child: Form(
-          key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Register",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "ECOHUB",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: kcPrimary,
+                      ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: SizedBox(
-                  width: formWidth,
-                  height: 50,
-                  child: TextFormField(
-                    textInputAction: TextInputAction.next,
-                    controller: emailController,
-                    validator: validateEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
+                verticalSpace(36),
+                Text(
+                  "Sign Up",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: kcPrimaryVariant,
+                      ),
+                ),
+                verticalSpace(40),
+                EchoHubTextInput(
+                  textInputAction: TextInputAction.next,
+                  controller: emailController,
+                  validator: validateEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: 'Email',
+                ),
+                verticalSpace(32),
+                EchoHubTextInput(
+                  textInputAction: TextInputAction.done,
+                  controller: passwordController,
+                  validator: validatePassword,
+                  keyboardType: TextInputType.text,
+                  obscureText: true,
+                  labelText: 'Password',
+                ),
+                verticalSpace(96),
+                BottomButton(
+                  onPressed: () => register(),
+                  title: 'Sign Up',
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "You have an account?",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: kcLightSecondary),
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: SizedBox(
-                  width: formWidth,
-                  height: 50,
-                  child: TextFormField(
-                    textInputAction: TextInputAction.done,
-                    controller: passwordController,
-                    validator: validatePassword,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
+                    TextButton(
+                      onPressed: () => Navigator.pushReplacementNamed(
+                          context, Routes.login.name),
+                      child: Text(
+                        'LOG IN',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: kcPrimaryVariant),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                    width: formWidth,
-                    child: ElevatedButton(
-                        // ignore: avoid_print
-                        onPressed: () => register(),
-                        style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            shape: const BeveledRectangleBorder()),
-                        child: const Text("Register"))),
-              ),
-              TextButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, Routes.login.name),
-                child: const Text(
-                  "Already have an account?",
-                  style: TextStyle(color: Colors.blueAccent),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

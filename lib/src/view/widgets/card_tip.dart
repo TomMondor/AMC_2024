@@ -1,3 +1,4 @@
+import 'package:amc_2024/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,7 +14,7 @@ class CardTip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        color: Colors.green,
+        color: kcPrimary,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -36,11 +37,8 @@ class CardTip extends StatelessWidget {
               const SizedBox(height: 8.0),
               Text(
                 descriptionText,
-                style: const TextStyle(
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Colors.white,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.bold,
-                  height: 1,
                 ),
               ),
             ],
