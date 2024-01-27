@@ -1,24 +1,66 @@
+import 'package:amc_2024/injection_container.dart';
+import 'package:amc_2024/src/application/electricity_service.dart';
+import 'package:amc_2024/src/domain/electricity/hydro_model.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LineChartSample2 extends StatefulWidget {
-  const LineChartSample2({super.key});
+class HydroData {
+  final String dateStart;
+  final String dateEnd;
+  final int mostRecentIndex;
+  final List<Detail> details;
+  final int maxY;
 
-  @override
-  State<LineChartSample2> createState() => _LineChartSample2State();
+  HydroData({
+    required this.dateStart,
+    required this.dateEnd,
+    required this.mostRecentIndex,
+    required this.details,
+    required this.maxY,
+  });
 }
 
-class _LineChartSample2State extends State<LineChartSample2> {
+class CoolChart extends HookWidget {
   List<Color> gradientColors = [
     kcPrimary,
     kcSecondary,
   ];
 
-  bool showAvg = false;
-
   @override
   Widget build(BuildContext context) {
+    final data = useState<HydroData?>(null);
+
+    Future<HydroData> fetchData() async {
+      HydroModel hydroData = await locator<HydroService>().getHydroData();
+      int index = hydroData.indexDonneePlusRecent - 1;
+
+      Detail details5 = hydroData.details[index];
+      Detail details4 = hydroData.details[index - 1];
+      Detail details3 = hydroData.details[index - 2];
+      Detail details2 = hydroData.details[index - 3];
+      Detail details1 = hydroData.details[index - 4];
+
+      List<Detail> details = [
+        details1,
+        details2,
+        details3,
+        details4,
+        details5,
+      ];
+
+      int maxY = details.map((detail) => detail.values.demandeTotal).reduce((max, current) => max! > current! ? max : current) as int;
+
+      HydroData newData =
+          HydroData(dateStart: hydroData.dateStart, dateEnd: hydroData.dateEnd, mostRecentIndex: index, details: details, maxY: maxY);
+      return newData;
+    }
+
+    useEffect(() {
+      fetchData().then((value) => data.value = value);
+    }, []);
+
     return Stack(
       children: <Widget>[
         AspectRatio(
@@ -28,57 +70,25 @@ class _LineChartSample2State extends State<LineChartSample2> {
               top: 24,
               bottom: 12,
             ),
-            child: LineChart(
-              showAvg ? avgData() : mainData(),
-            ),
+            child: data.value != null
+                ? LineChart(
+                    mainData(data.value!),
+                  )
+                : Container(),
           ),
         ),
         SizedBox(
           width: 60,
           height: 34,
           child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
+            onPressed: () {},
             child: Text(
               'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
-              ),
+              style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.5)),
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
-    );
-    Widget text;
-    switch (value.toInt()) {
-      case 2:
-        text = const Text('MAR', style: style);
-        break;
-      case 5:
-        text = const Text('JUN', style: style);
-        break;
-      case 8:
-        text = const Text('SEP', style: style);
-        break;
-      default:
-        text = const Text('', style: style);
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: const Text("dd")
     );
   }
 
@@ -105,56 +115,61 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Text(text, style: style, textAlign: TextAlign.left);
   }
 
-  LineChartData mainData() {
+  LineChartData mainData(HydroData data) {
     return LineChartData(
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
-        horizontalInterval: 1,
+        horizontalInterval: 300,
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: kcSecondaryVariant,
-            strokeWidth: 1,
-          );
-        },
-        getDrawingVerticalLine: (value) {
           return const FlLine(
             color: kcPrimaryVariant,
             strokeWidth: 1,
           );
         },
+        getDrawingVerticalLine: (value) {
+          return const FlLine(
+            color: kcPrimary,
+            strokeWidth: 1,
+          );
+        },
       ),
       titlesData: const FlTitlesData(
-          show: true,
-          bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          leftTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: false,
-            ),
-          ),
-          rightTitles: AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: true))),
+        show: true,
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+      ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        border: Border.all(color: const Color.fromARGB(80, 55, 67, 77)),
       ),
       minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
+      maxX: 4,
+      minY: data.maxY.toDouble() - 1500,
+      maxY: data.maxY.toDouble(),
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+          showingIndicators: [0, 1, 2, 3, 4],
+          shadow: const Shadow(
+            blurRadius: 8,
+          ),
+          spots: [
+            FlSpot(0, data.details[0].values.demandeTotal!.toDouble()),
+            FlSpot(1, data.details[1].values.demandeTotal!.toDouble()),
+            FlSpot(2, data.details[2].values.demandeTotal!.toDouble()),
+            FlSpot(3, data.details[3].values.demandeTotal!.toDouble()),
+            FlSpot(4, data.details[4].values.demandeTotal!.toDouble()),
           ],
           isCurved: true,
           gradient: LinearGradient(
@@ -165,87 +180,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
           dotData: const FlDotData(
             show: false,
           ),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  LineChartData avgData() {
-    return LineChartData(
-      lineTouchData: const LineTouchData(enabled: false),
-      gridData: FlGridData(
-        show: true,
-        drawHorizontalLine: true,
-        verticalInterval: 1,
-        horizontalInterval: 1,
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: Color.fromARGB(159, 194, 199, 203),
-            strokeWidth: 1,
-          );
-        },
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: Color.fromARGB(100, 194, 199, 203),
-            strokeWidth: 1,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 20,
-            getTitlesWidget: bottomTitleWidgets,
-            interval: 5,
-          ),
-        )
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
-      ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
-          isCurved: true,
-          gradient: LinearGradient(
-            colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!,
-            ],
-          ),
-          barWidth: 5,
-          isStrokeCapRound: true,
-          dotData: const FlDotData(
+          aboveBarData: BarAreaData(
             show: false,
           ),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!.withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!.withOpacity(0.1),
-              ],
+              colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
             ),
           ),
         ),

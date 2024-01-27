@@ -1,6 +1,5 @@
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/electricity/graph.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Electricity extends StatefulWidget {
@@ -49,41 +48,79 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
         controller: _tabController,
         children: <Widget>[
           Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12.0),
-                        child: Text(
-                          '182',
-                          style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: kcPrimaryVariant),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              Column(
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Column(
                         children: [
-                          const Icon(
-                            Icons.expand_less,
-                            color: kcPrimary,
-                            size: 40.0,
-                          ),
-                          Text(
-                            'kWh',
-                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: kcPrimaryVariant, fontSize: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: Text(
+                                  '182',
+                                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: kcPrimaryVariant),
+                                ),
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Icon(
+                                    Icons.expand_less,
+                                    color: kcPrimary,
+                                    size: 40.0,
+                                  ),
+                                  Text(
+                                    'kWh',
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: kcPrimaryVariant, fontSize: 30),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  Text("25.6% INCREASE", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Container(
+                                height: 400,
+                                color: Colors.amber,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      const Text('Modal BottomSheet'),
+                                      ElevatedButton(
+                                        child: const Text('OK!'),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: const Text("How can I help?")),
+                  )
+                ],
               ),
-              Text("25.6% INCREASE", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant)),
-              const LineChartSample2()
+              CoolChart()
             ],
           ),
           const Center(
