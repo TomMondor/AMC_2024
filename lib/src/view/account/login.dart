@@ -5,6 +5,9 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWdith = MediaQuery.of(context).size.width ;
+    double formWidth = screenWdith * 0.8;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -17,12 +20,12 @@ class Login extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                width: 200,
+                width: formWidth,
                 height: 50,
-                child: TextField(
+                child: const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -30,10 +33,10 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 200,
+            SizedBox(
+              width: formWidth,
               height: 50,
-              child: TextField(
+              child: const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
@@ -42,15 +45,18 @@ class Login extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                onPressed: () => {print("Login")},
-                child: const Text('Login'),
+              child: SizedBox(
+                width: formWidth,
+                child: ElevatedButton(
+                  onPressed: () => {print("Login")},
+                  child: const Text('Login'),
+                ),
               ),
             ),
             const TextButton(
                 onPressed: null,
                 child: Text(
-                    'Forgot Password?',
+                    'Don\'t have an account? Sign up here.',
                     style: TextStyle(color: Colors.blueAccent),
                 ),
             ),

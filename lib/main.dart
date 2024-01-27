@@ -1,3 +1,4 @@
+import 'package:amc_2024/src/view/account/login.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      home: const MyHomePage(title: 'Flutter demo'),
+      home: const Login(),
     );
   }
 }
