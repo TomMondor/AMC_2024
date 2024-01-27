@@ -5,32 +5,24 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../widgets/card_tip.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
 
-  final String title;
+class Home extends StatelessWidget {
+  final String name;
+
+  const Home({super.key, required this.name});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  static final List<Widget> _widgetOptions = <Widget>[
-    Padding(
+  Widget build(BuildContext context) {
+    return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Hi Clement!",
-              style: TextStyle(
+              "Hi $name !",
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -89,63 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   categoryText: "Air Quality"),
             ],
           )
-        ],
-      ),
-    ),
-    const Text(
-      'Index 3: Alimentation',
-      style: optionStyle,
-    ),
-    const Text(
-      'Index 4: Transport',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: _widgetOptions[_selectedIndex],
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        indicatorColor: Colors.amber,
-        selectedIndex: _selectedIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.lightbulb),
-            label: 'Electricity',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.hub),
-            label: 'Hub',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Alimentation',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.directions_car_filled),
-            label: 'Transport',
-          ),
         ],
       ),
     );
