@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../src/view/account/login.dart';
 import '../src/view/startup/startup.dart';
+import '../src/view/home/home.dart';
 
 enum Routes {
   home,
@@ -30,7 +31,8 @@ extension RoutesExtension on Routes {
 }
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
-  Routes.home.name: (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+  Routes.home.name: (context) =>
+      const MyHomePage(title: 'Flutter Demo Home Page'),
   Routes.startup.name: (context) => const Startup(),
   Routes.login.name: (context) => const Login(),
   Routes.register.name: (context) => const Register(),
