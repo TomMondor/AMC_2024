@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import '../src/view/account/login.dart';
+import '../src/view/account/user_info.dart';
 import '../src/view/startup/startup.dart';
 import '../src/view/home/home.dart';
 
@@ -11,6 +12,7 @@ enum Routes {
   startup,
   login,
   register,
+  userInfo,
 }
 
 extension RoutesExtension on Routes {
@@ -24,6 +26,8 @@ extension RoutesExtension on Routes {
         return '/login';
       case Routes.register:
         return '/register';
+      case Routes.userInfo:
+        return '/user-info';
       default:
         return '/';
     }
@@ -36,4 +40,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   Routes.startup.name: (context) => const Startup(),
   Routes.login.name: (context) => const Login(),
   Routes.register.name: (context) => const Register(),
+  Routes.userInfo.name: (context) => const UserInfo(),
 };
