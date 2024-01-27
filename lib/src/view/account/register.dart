@@ -109,7 +109,7 @@ class Register extends HookWidget {
                         style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.black,
                             shape: const BeveledRectangleBorder()),
-                        child: const Text("Register"))),
+                        child: const Text("Continue"))),
               ),
               TextButton(
                 onPressed: () =>
