@@ -38,7 +38,6 @@ class Login extends HookWidget {
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.home.name);
           }
-
         } on AuthenticationException catch (e) {
           print("WTF");
           isLoading.value = false;
@@ -107,7 +106,7 @@ class Login extends HookWidget {
                 child: SizedBox(
                     width: formWidth,
                     child: ElevatedButton(
-                      // ignore: avoid_print
+                        // ignore: avoid_print
                         onPressed: () => login(),
                         style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.black,
@@ -115,8 +114,8 @@ class Login extends HookWidget {
                         child: const Text("Login"))),
               ),
               TextButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, Routes.register.name),
+                onPressed: () => Navigator.pushReplacementNamed(
+                    context, Routes.register.name),
                 child: const Text(
                   "Don't have an account? Register here",
                   style: TextStyle(color: Colors.blueAccent),
