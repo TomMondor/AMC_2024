@@ -1,3 +1,6 @@
+import 'package:amc_2024/injection_container.dart';
+import 'package:amc_2024/src/application/electricity_service.dart';
+import 'package:amc_2024/src/domain/electricity/hydro_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../routes/routes.dart';
@@ -7,7 +10,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWdith = MediaQuery.of(context).size.width ;
+    double screenWdith = MediaQuery.of(context).size.width;
     double formWidth = screenWdith * 0.8;
 
     return Scaffold(
@@ -56,11 +59,12 @@ class Login extends StatelessWidget {
               ),
             ),
             TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, Routes.register.name),
-                child: const Text(
-                    'Don\'t have an account? Sign up here.',
-                    style: TextStyle(color: Colors.blueAccent),
-                ),
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, Routes.register.name),
+              child: const Text(
+                'Don\'t have an account? Sign up here.',
+                style: TextStyle(color: Colors.blueAccent),
+              ),
             ),
           ],
         ),
