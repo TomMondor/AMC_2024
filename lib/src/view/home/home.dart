@@ -1,3 +1,4 @@
+import 'package:amc_2024/src/view/widgets/textfield_dash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -17,10 +18,10 @@ class _MyHomePageState extends State<MyHomePage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+    Center(
+      child:
+    TextfieldDash(title: 'Courriel',)
+      ,),
     Text(
       'Index 1: Electricity',
       style: optionStyle,
