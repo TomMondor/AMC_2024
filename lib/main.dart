@@ -1,8 +1,10 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'firebase_options.dart';
 import 'injection_container.dart';
 
 void main() async {
@@ -10,7 +12,12 @@ void main() async {
 
   setupLocator();
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(DevicePreview(
+    enabled: false,
     builder: (context) => const MyApp(),
   ));
 }
