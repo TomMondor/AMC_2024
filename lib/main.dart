@@ -19,7 +19,7 @@ void main() async {
   );
 
   runApp(DevicePreview(
-    enabled: false,
+    enabled: true,
     builder: (context) => const MyApp(),
   ));
 }
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      initialRoute: Routes.startup.name,//Routes.startup.name,
+      initialRoute: Routes.hub.name,//Routes.startup.name,
       routes: appRoutes,
     );
   }

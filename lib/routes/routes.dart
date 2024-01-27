@@ -1,5 +1,6 @@
 import 'package:amc_2024/src/view/account/register.dart';
 import 'package:amc_2024/src/view/electricity/electricity.dart';
+import 'package:amc_2024/src/view/home/hub.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -12,7 +13,7 @@ enum Routes {
   startup,
   login,
   register,
-  electricity
+  electricity, hub
 }
 
 extension RoutesExtension on Routes {
@@ -36,7 +37,7 @@ extension RoutesExtension on Routes {
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
   Routes.home.name: (context) =>
-      const MyHomePage(title: 'Flutter Demo Home Page'),
+      const MyHubPage(title: 'Flutter Demo Home Page'),
   Routes.startup.name: (context) => const Startup(),
   Routes.login.name: (context) => const Login(),
   Routes.register.name: (context) => const Register(),
