@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:amc_2024/src/application/electricity_service.dart';
 import 'package:amc_2024/src/infra/electricity/hydro_api.dart';
 import 'package:dio/dio.dart';

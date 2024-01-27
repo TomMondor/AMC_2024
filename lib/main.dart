@@ -1,6 +1,4 @@
-import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/theme/theme.dart';
-import 'package:amc_2024/src/view/account/login.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      initialRoute: Routes.home.name,//Routes.startup.name,
+      initialRoute: Routes.startup.name,//Routes.startup.name,
       routes: appRoutes,
     );
   }
