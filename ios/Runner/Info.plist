@@ -28,9 +28,9 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>Reason why we need access to your location</string>
+    <string>We need to access your location to propose personalized suggestions</string>
+	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

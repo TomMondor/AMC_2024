@@ -23,7 +23,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  print(await FirebaseMessaging.instance.getToken());
+  final token = await FirebaseMessaging.instance.getToken();
+  print('token: $token');
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
