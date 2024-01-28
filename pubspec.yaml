@@ -84,6 +84,7 @@ flutter:
     - assets/animations/
     - assets/fonts/
     - assets/launcher/
+    - assets/data/
     - assets/images/carbon_score_background.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -38,7 +38,7 @@ class Register extends HookWidget {
           await authService.register(email, password);
 
           if (context.mounted) {
-            Navigator.pushReplacementNamed(context, Routes.hub.name);
+            Navigator.pushReplacementNamed(context, Routes.userInfo.name);
           }
         } on AuthenticationException catch (e) {
           print("WTF");
@@ -68,15 +68,15 @@ class Register extends HookWidget {
                 Text(
                   "ECOHUB",
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: kcPrimary,
-                      ),
+                    color: kcPrimary,
+                  ),
                 ),
                 verticalSpace(36),
                 Text(
                   "Sign Up",
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        color: kcPrimaryVariant,
-                      ),
+                    color: kcPrimaryVariant,
+                  ),
                 ),
                 verticalSpace(40),
                 EchoHubTextInput(
