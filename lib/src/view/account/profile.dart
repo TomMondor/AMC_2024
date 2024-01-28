@@ -1,4 +1,5 @@
 import 'package:amc_2024/helpers/ui_helpers.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -33,7 +34,7 @@ class Profile extends HookWidget {
       await authService.logout();
       Navigator.pushReplacementNamed(context, '/login');
     }
-    
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -58,13 +59,16 @@ class Profile extends HookWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: screenHeightFraction(context, dividedBy: 10),
-                backgroundColor: kcSecondary,
-                foregroundColor: kcOnSecondary,
-                child: Text(profile.value != null
-                    ? '${profile.value!.name[0]}${profile.value!.surname[0]}'
-                    : ""),
+              SizedBox(
+                width: 120,
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(1000),
+                  child: profile.value != null ? SvgPicture.network(
+                    'https://source.boringavatars.com/beam/120/${profile.value!.name}${profile.value!.surname}',
+                    fit: BoxFit.cover,
+                  ) : Container(),
+                ),
               ),
               verticalSpace(16),
               Text(
@@ -202,10 +206,12 @@ class Profile extends HookWidget {
                           ),
                           Text(
                             '>',
-                            style:
-                                Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                      color: kcSecondary,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: kcSecondary,
+                                ),
                           ),
                         ],
                       ),
