@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:amc_2024/src/application/auth_service.dart';
+import 'package:amc_2024/src/infra/account/profile_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../injection_container.dart';
 import '../../../routes/routes.dart';
 import '../../exceptions/exceptions.dart';
 import '../widgets/error_dialog.dart';
@@ -31,9 +34,7 @@ class UserInfo extends HookWidget {
         final Map<String, dynamic> data = await json.decode(response);
         cars.value = data.keys.toList();
       }
-
       readJson();
-
       return () {
       };
     }, const []);
@@ -58,11 +59,15 @@ class UserInfo extends HookWidget {
         isLoading.value = true;
         try {
           isLoading.value = false;
+          UserRepository profileRepository = locator<UserRepository>();
+          AuthService authService = locator<AuthService>();
+          final userId = authService.currentUser!.uid;
+          await profileRepository.addUser(userId, name, surname, "1234");
 
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.home.name);
           }
-        } on AuthenticationException catch (e) {
+        } on FirestoreException catch (e) {
           isLoading.value = false;
           showDialog(
             context: context,
@@ -73,10 +78,6 @@ class UserInfo extends HookWidget {
             ),
           );
         }
-      }
-
-      if (name.isNotEmpty && surname.isNotEmpty && car.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, Routes.home.name);
       }
     }
 

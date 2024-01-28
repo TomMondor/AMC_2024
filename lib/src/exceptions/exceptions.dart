@@ -13,3 +13,8 @@ class UserException implements Exception {
   final String message;
   const UserException({required this.message});
 }
+
+class FirestoreException implements Exception {
+  final String message;
+  const FirestoreException({required this.message});
+}
