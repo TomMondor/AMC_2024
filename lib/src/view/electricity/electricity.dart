@@ -1,5 +1,6 @@
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/electricity/graph.dart';
+import 'package:amc_2024/src/view/transport/tip_item.dart';
 import 'package:flutter/material.dart';
 
 class Electricity extends StatefulWidget {
@@ -29,9 +30,12 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'Power Consumption',
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
+        title: Align(
+          alignment: Alignment.center,
+          child: Text(
+            'Power Consumption',
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
+          ),
         ),
         bottom: TabBar(
           labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
@@ -99,21 +103,17 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
                             builder: (BuildContext context) {
                               return Container(
                                 height: 200,
-                                color: kcPrimaryVariant,
+                                color: kcBackground,
                                 child: Center(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 30, right: 30),
-                                        child: SizedBox(
-                                          height: 125, // Set the height as needed
-                                          child: ListView(
-                                            scrollDirection: Axis.horizontal,
-                                            children: const [Text("Hello")],
-                                          ),
-                                        ),
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 30, right: 30),
+                                        child: Column(children: <Widget>[
+                                          TipItem(descriptionText: "Test", titleText: "Test", iconData: Icons.ac_unit),
+                                        ]),
                                       ),
                                       ElevatedButton(
                                         child: const Text('OK!'),

@@ -64,20 +64,20 @@ class CoolChart extends HookWidget {
 
     return Stack(
       children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 24,
-              bottom: 12,
-            ),
-            child: data.value != null
-                ? LineChart(
+        data.value == null
+            ? const Center(child: CircularProgressIndicator())
+            : AspectRatio(
+                aspectRatio: 1.70,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 24,
+                    bottom: 12,
+                  ),
+                  child: LineChart(
                     mainData(data.value!),
-                  )
-                : Container(),
-          ),
-        ),
+                  ),
+                ),
+              ),
       ],
     );
   }
@@ -86,8 +86,7 @@ class CoolChart extends HookWidget {
     const style = TextStyle(
       fontSize: 16,
       fontFamily: 'Poppins',
-      fontWeight: FontWeight.w500,
-      
+      fontWeight: FontWeight.w600,
     );
     Widget text;
     switch (value.toInt()) {
