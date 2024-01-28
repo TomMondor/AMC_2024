@@ -35,5 +35,18 @@
     "fortyfive_secs": "45 sec. ago",
     "doing_great": "You are doing great! Keep it up!",
     "generating_co2": "You are generating approximately 757 Wh, which translates to 0.5kg of CO2 per day.",
-    "my_impact": "What is my impact?"
+    "my_impact": "What is my impact?",
+    "transport": "Transport",
+    "my_footprint": "My Footprint",
+    "co2": "CO2 in the last month",
+    "walk": "Walk",
+    "public": "Public",
+    "car": "Car",
+    "means": "What does it mean?",
+    "well_done": "Well done!",
+    "walked_more": "You walked 10% more this month!",
+    "cheap_bus_title": "Cheap bus tickets",
+    "cheap_bus_text": "There is a sale on the annual bus pass for students. You can save up to 50% on your bus tickets.",
+    "carpool_montreal_title": "Carpool to Montreal",
+    "carpool_montreal_text": "Your calendar suggests that you are going to Montreal for AMC 2024. You can carpool with other students and save up to 275kg of CO2."
 }

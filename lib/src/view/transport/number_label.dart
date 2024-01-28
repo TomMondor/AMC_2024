@@ -26,7 +26,7 @@ class NumberLabel extends StatelessWidget {
             ),
             Text(
               ' km',
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: kcPrimaryVariant,
                   ),
             ),
@@ -35,7 +35,8 @@ class NumberLabel extends StatelessWidget {
         Text(
           descriptionText,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: kcPrimaryVariant,
               ),
         ),

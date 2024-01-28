@@ -35,5 +35,18 @@
     "fortyfive_secs": "45 sec.",
     "doing_great": "Tu te débrouilles bien! Continue comme ça!",
     "generating_co2": "Tu génères environ 757 Wh, ce qui correspond à 0,5 kg de CO2 par jour.",
-    "my_impact": "Mon impact?"
+    "my_impact": "Mon impact?",
+    "transport": "Transport",
+    "my_footprint": "Mon empreinte",
+    "co2": "CO2 dans le dernier mois",
+    "walk": "Marche",
+    "public": "Public",
+    "car": "Auto",
+    "means": "Qu'est-ce que ça signifie?",
+    "well_done": "Bien joué!",
+    "walked_more": "Tu as marché 10% plus ce mois-ci!",
+    "cheap_bus_title": "Billets de bus",
+    "cheap_bus_text": "Il y a une vente sur le pass de bus annuel pour les étudiants. Vous pouvez économiser jusqu'à 50 % sur vos billets de bus.",
+    "carpool_montreal_title": "Covoiturage pour Montréal",
+    "carpool_montreal_text": "Votre calendrier suggère que vous partez à Montréal pour l'AMC 2024. Vous pouvez faire du covoiturage avec d'autres étudiants et économiser jusqu'à 275 kg de CO2."
 }
