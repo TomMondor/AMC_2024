@@ -52,6 +52,7 @@ dependencies:
   animated_digit: ^3.2.3
   firebase_messaging: ^14.7.10
   cloud_firestore: ^4.14.0
+  syncfusion_flutter_gauges: ^24.1.47
 
 dev_dependencies:
   build_runner:
