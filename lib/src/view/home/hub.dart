@@ -1,5 +1,6 @@
 import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:amc_2024/src/view/home/home.dart';
+import 'package:amc_2024/src/view/transport/transport.dart';
 import 'package:amc_2024/src/view/widgets/card_carbon.dart';
 import 'package:amc_2024/src/view/widgets/card_summary.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _MyHubPageState extends State<MyHubPage> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static final List<Widget> _widgetOptions = <Widget>[
+    const Transport(),
     const Home(name: "Clement"),
     const Electricity(),
     const Text(
