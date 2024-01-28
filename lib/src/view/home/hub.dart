@@ -1,6 +1,9 @@
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:amc_2024/src/view/home/home.dart';
+import 'package:amc_2024/src/view/transport/transport.dart';
+import 'package:amc_2024/src/view/widgets/card_carbon.dart';
+import 'package:amc_2024/src/view/widgets/card_summary.dart';
 import 'package:flutter/material.dart';
 
 class MyHubPage extends StatefulWidget {
@@ -21,6 +24,7 @@ class _MyHubPageState extends State<MyHubPage> {
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(name: "Clement"),
     const Electricity(),
+    const Transport(),
     const SafeArea(
       child: Text(
         'Index 3: Alimentation',
