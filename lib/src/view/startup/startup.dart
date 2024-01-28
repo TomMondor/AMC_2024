@@ -30,6 +30,7 @@ class Startup extends HookWidget {
         height: screenHeight(context),
         width: screenWidth(context),
         padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.04),
+        color: const Color(0xFFD0F0C0),
         child: const Center(
           child: RiveAnimation.asset(
             'assets/animations/heartbeat.riv',

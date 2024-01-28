@@ -1,8 +1,7 @@
-import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/theme/theme.dart';
-import 'package:amc_2024/src/view/account/login.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,6 +9,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'firebase_options.dart';
 import 'injection_container.dart';
 import 'routes/routes.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,8 +23,18 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  print(await FirebaseMessaging.instance.getToken());
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(DevicePreview(
-    enabled: false,
+    enabled: true,
     builder: (context) => const MyApp(),
   ));
 }
@@ -48,7 +61,9 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      initialRoute: Routes.userInfo.name,
+
+      initialRoute: Routes.startup.name, //Routes.startup.name,
+
       routes: appRoutes,
     );
   }

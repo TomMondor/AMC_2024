@@ -1,3 +1,4 @@
+
 import 'package:amc_2024/src/application/carbon_footprint_service.dart';
 import 'package:amc_2024/src/application/electricity_service.dart';
 import 'package:amc_2024/src/infra/carbon/carbon_api.dart';
