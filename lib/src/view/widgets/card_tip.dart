@@ -5,10 +5,9 @@ import 'package:flutter/widgets.dart';
 class CardTip extends StatelessWidget {
   final IconData topIcon;
   final String descriptionText;
+  final String titleText;
 
-  const CardTip(
-      {super.key, required this.topIcon,
-        required this.descriptionText});
+  const CardTip({super.key, required this.topIcon, required this.descriptionText, required this.titleText});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,8 @@ class CardTip extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Container(
-          width: 250,
-          height: 100,
+          width: 260,
+          height: 105,
           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0, right: 8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -29,16 +28,25 @@ class CardTip extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(topIcon, color: Colors.white, size: 25),
-                  const Spacer(),
-                  const PopupMenuExample(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: Icon(topIcon, color: Colors.white, size: 25),
+                  ),
+                  Text(
+                    titleText,
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white, fontSize: 13),
+                  ),
                 ],
               ),
-              const SizedBox(height: 8.0),
-              Text(
-                descriptionText,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                  descriptionText,
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                 ),
               ),
             ],
@@ -63,28 +71,28 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
 
   @override
   Widget build(BuildContext context) {
-      return PopupMenuButton<SampleItem>(
-          icon: const Icon(Icons.more_vert, color: Colors.white),
-          initialValue: selectedMenu,
-          onSelected: (SampleItem item) {
-            setState(() {
-              selectedMenu = item;
-            });
-          },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-            const PopupMenuItem<SampleItem>(
-              value: SampleItem.itemOne,
-              child: Text('Item 1'),
-            ),
-            const PopupMenuItem<SampleItem>(
-              value: SampleItem.itemTwo,
-              child: Text('Item 2'),
-            ),
-            const PopupMenuItem<SampleItem>(
-              value: SampleItem.itemThree,
-              child: Text('Item 3'),
-            ),
-          ],
+    return PopupMenuButton<SampleItem>(
+      icon: const Icon(Icons.more_vert, color: Colors.white),
+      initialValue: selectedMenu,
+      onSelected: (SampleItem item) {
+        setState(() {
+          selectedMenu = item;
+        });
+      },
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemOne,
+          child: Text('Item 1'),
+        ),
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemTwo,
+          child: Text('Item 2'),
+        ),
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemThree,
+          child: Text('Item 3'),
+        ),
+      ],
     );
   }
 }

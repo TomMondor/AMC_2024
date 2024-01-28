@@ -1,9 +1,9 @@
 import 'package:amc_2024/src/application/auth_service.dart';
 import 'package:amc_2024/src/infra/account/profile_repo.dart';
+import 'package:amc_2024/src/infra/http_client.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/widgets/card_carbon.dart';
 import 'package:amc_2024/src/view/widgets/card_summary.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -33,7 +33,7 @@ class Home extends HookWidget {
 
     useEffect(() {
       Future<void> requestNotificationPermissions() async {
-        NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+        /* NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
           alert: true,
           announcement: false,
           badge: true,
@@ -43,7 +43,8 @@ class Home extends HookWidget {
           sound: true,
         );
 
-        print('User granted permission: ${settings.authorizationStatus}');
+        print('User granted permission: ${settings.authorizationStatus}'); 
+        */
       }
 
       requestNotificationPermissions();
@@ -71,10 +72,26 @@ class Home extends HookWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: const [
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
+                  CardTip(
+                    topIcon: Icons.whatshot,
+                    descriptionText: "A slow period is starting, do you have a laundry load to do?",
+                    titleText: "Slack period",
+                  ),
+                  CardTip(
+                    topIcon: Icons.house,
+                    descriptionText: "Confirm your work schedule to automatically reduce the heating in your absence.",
+                    titleText: "Heating an empty house?",
+                  ),
+                  CardTip(
+                    topIcon: Icons.car_crash,
+                    descriptionText: "Some of your car trips would have been quicker by bus!",
+                    titleText: "38km of car to do by bus",
+                  ),
+                  CardTip(
+                    topIcon: Icons.attach_money,
+                    descriptionText: "In the last month, these are your car trips of 2km or less, which you could have made on foot!",
+                    titleText: "Missed \$11.50 savings!",
+                  )
                 ],
               ),
             ),
@@ -92,9 +109,9 @@ class Home extends HookWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CardSummary(topIcon: Icons.lightbulb, titleText: '27°C', descriptionText: "Sunny", categoryText: "Temp."),
-                CardSummary(topIcon: Icons.lightbulb, titleText: '370', descriptionText: "KW", categoryText: "Consumption"),
-                CardSummary(topIcon: Icons.lightbulb, titleText: '1-10', descriptionText: "Good", categoryText: "Air Quality"),
+                CardSummary(topIcon: Icons.device_thermostat, titleText: '27°C', descriptionText: "Sunny", categoryText: "Temp."),
+                CardSummary(topIcon: Icons.electric_bolt, titleText: '370', descriptionText: "KW", categoryText: "Consumption"),
+                CardSummary(topIcon: Icons.air, titleText: '1-10', descriptionText: "Good", categoryText: "Air Quality"),
               ],
             )
           ],
