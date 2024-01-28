@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:amc_2024/injection_container.dart';
 import 'package:amc_2024/src/application/auth_service.dart';
-import 'package:amc_2024/src/infra/account/profile_repo.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amc_2024/src/application/carbon_footprint_service.dart';
@@ -11,6 +10,8 @@ import 'package:amc_2024/src/domain/carbon/vehicle/vehicle_model.dart';
 import 'package:amc_2024/src/view/transport/use_trip_history.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
+import '../../infra/account/user_repo.dart';
 
 /* 
 final carbon = useCarTripsCarbonKg();

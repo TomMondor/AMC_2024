@@ -1,9 +1,9 @@
 import 'package:amc_2024/src/application/auth_service.dart';
-import 'package:amc_2024/src/infra/account/profile_repo.dart';
-import 'package:amc_2024/src/infra/http_client.dart';
+import 'package:amc_2024/src/infra/account/user_repo.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/widgets/card_carbon.dart';
 import 'package:amc_2024/src/view/widgets/card_summary.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -15,13 +15,13 @@ class Home extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthService authService = locator<AuthService>();
-    final UserRepository userRepository = locator<UserRepository>();
-
     final name = useState("");
 
     useEffect(() {
       Future<void> getUserName() async {
+        final AuthService authService = locator<AuthService>();
+        final UserRepository userRepository = locator<UserRepository>();
+
         final userId = authService.currentUser!.uid;
         final userInfo = await userRepository.getUser(userId);
         name.value = userInfo.name;
@@ -33,7 +33,7 @@ class Home extends HookWidget {
 
     useEffect(() {
       Future<void> requestNotificationPermissions() async {
-        /* NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+        NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
           alert: true,
           announcement: false,
           badge: true,
@@ -43,8 +43,7 @@ class Home extends HookWidget {
           sound: true,
         );
 
-        print('User granted permission: ${settings.authorizationStatus}'); 
-        */
+        print('User granted permission: ${settings.authorizationStatus}');
       }
 
       requestNotificationPermissions();
