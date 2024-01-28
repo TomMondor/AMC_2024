@@ -107,13 +107,45 @@ class Transport extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        NumberLabel(
-                            score: walkDistance.value, descriptionText: 'Walk'),
-                        NumberLabel(
-                            score: publicDistance.value,
-                            descriptionText: 'Public'),
-                        NumberLabel(
-                            score: carDistance.value, descriptionText: 'Car'),
+                        Container(
+                          height: 82,
+                          decoration: BoxDecoration(
+                            color: kcSecondary.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: NumberLabel(
+                                score: walkDistance.value,
+                                descriptionText: 'Walk'),
+                          ),
+                        ),
+                        Container(
+                          height: 82,
+                          decoration: BoxDecoration(
+                            color: kcSecondary.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: NumberLabel(
+                                score: carDistance.value,
+                                descriptionText: 'Car'),
+                          ),
+                        ),
+                        Container(
+                          height: 82,
+                          decoration: BoxDecoration(
+                            color: kcSecondary.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: NumberLabel(
+                                score: publicDistance.value,
+                                descriptionText: 'Public'),
+                          ),
+                        ),
                       ],
                     ),
                     verticalSpace(58),
@@ -132,18 +164,41 @@ class Transport extends HookWidget {
                 Expanded(
                   child: ListView(
                     scrollDirection: Axis.vertical,
-                    children: const [
-                      TipItem(
-                          iconData: Icons.directions_walk,
-                          titleText: 'Maybe a little walk?',
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: kcGold,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: const TipItem(
+                            iconData: Icons.directions_walk,
+                            titleText: 'Well done!',
+                            descriptionText: 'You walked 10% more this month!',
+                            color: kcGold,
+                          ),
+                        ),
+                      ),
+                      const TipItem(
+                          iconData: Icons.directions_bus,
+                          titleText: '38km of car to do by bus',
                           descriptionText:
-                              'If you walked instead of taking your car, you would have saved 5kg of CO2 for distances less than 5km.'),
-                      TipItem(
+                              'Some of your car trips would have been quicker by bus!'),
+                      const TipItem(
+                          iconData: Icons.directions_walk,
+                          titleText: 'Missed \$11.50 savings!',
+                          descriptionText:
+                              'In the last month, these are your car trips of 2km or less, which you could have made on foot.'),
+                      const TipItem(
                           iconData: Icons.directions_bus,
                           titleText: 'Cheap bus tickets',
                           descriptionText:
                               'There is a sale on the annual bus pass for students. You can save up to 50% on your bus tickets.'),
-                      TipItem(
+                      const TipItem(
                           iconData: Icons.local_taxi,
                           titleText: 'Carpool to Montreal',
                           descriptionText:
