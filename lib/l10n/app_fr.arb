@@ -48,5 +48,9 @@
     "cheap_bus_title": "Billets de bus",
     "cheap_bus_text": "Il y a une vente sur le pass de bus annuel pour les étudiants. Vous pouvez économiser jusqu'à 50 % sur vos billets de bus.",
     "carpool_montreal_title": "Covoiturage pour Montréal",
-    "carpool_montreal_text": "Votre calendrier suggère que vous partez à Montréal pour l'AMC 2024. Vous pouvez faire du covoiturage avec d'autres étudiants et économiser jusqu'à 275 kg de CO2."
+    "carpool_montreal_text": "Votre calendrier suggère que vous partez à Montréal pour l'AMC 2024. Vous pouvez faire du covoiturage avec d'autres étudiants et économiser jusqu'à 275 kg de CO2.",
+    "profile": "Profil",
+    "personal_info": "Informations personnelles",
+    "other": "Autres",
+    "logout": "Déconnexion"
 }
