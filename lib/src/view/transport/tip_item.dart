@@ -1,3 +1,4 @@
+import 'package:amc_2024/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class TipItem extends StatelessWidget {
@@ -16,7 +17,7 @@ class TipItem extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(iconData, color: Colors.red, size: 40.0),
+        Icon(iconData, color: kcSecondary, size: 40.0),
         const SizedBox(width: 8.0),
         Flexible(
           child:
@@ -32,9 +33,9 @@ class TipItem extends StatelessWidget {
             Text(
               descriptionText,
               style: const TextStyle(
-                color: Colors.black,
+                color: kcLightSecondary,
                 fontSize: 14.0,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
               ),
             )
           ]),
