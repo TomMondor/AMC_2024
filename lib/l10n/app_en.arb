@@ -52,5 +52,12 @@
     "profile": "Profile",
     "personal_info": "Personal info",
     "other": "Others",
-    "logout": "Logout"
+    "logout": "Logout",
+    "meat": "Meat",
+    "fish": "Fish",
+    "fruit": "Fruits",
+    "vegetables": "Veggies",
+    "leftover": "Leftovers",
+    "save_food": "Save on near-expiration foods and help businesses reduce their food waste!",
+    "could_save": "You could save up to"
 }

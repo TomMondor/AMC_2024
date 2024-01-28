@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/leftover/leftover_label.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LeftoverItem extends StatelessWidget {
   final double _borderRadius = 20.0;
@@ -53,7 +54,7 @@ class LeftoverItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 2, bottom: 8.0),
                   child: Text(
-                    "Vous pourriez économiser jusqu'à ${Random().nextInt(16) + 5}\$ !",
+                    "${AppLocalizations.of(context)!.could_save} ${Random().nextInt(16) + 5}\$ !",
                     style: const TextStyle(
                         color: kcPrimaryVariant,
                         fontSize: 13.0,
