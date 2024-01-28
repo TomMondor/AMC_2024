@@ -34,14 +34,14 @@ class Register extends HookWidget {
         try {
           isLoading.value = false;
           AuthService authService = locator<AuthService>();
+          print(email);
           await authService.register(email, password);
 
           if (context.mounted) {
-
             Navigator.pushReplacementNamed(context, Routes.userInfo.name);
-            Navigator.pushReplacementNamed(context, Routes.hub.name);
           }
         } on AuthenticationException catch (e) {
+          print("WTF");
           isLoading.value = false;
           showDialog(
             context: context,
@@ -68,15 +68,15 @@ class Register extends HookWidget {
                 Text(
                   "ECOHUB",
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: kcPrimary,
-                      ),
+                    color: kcPrimary,
+                  ),
                 ),
                 verticalSpace(36),
                 Text(
                   "Sign Up",
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        color: kcPrimaryVariant,
-                      ),
+                    color: kcPrimaryVariant,
+                  ),
                 ),
                 verticalSpace(40),
                 EchoHubTextInput(
@@ -95,25 +95,6 @@ class Register extends HookWidget {
                   obscureText: true,
                   labelText: 'Password',
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                    width: formWidth,
-                    child: ElevatedButton(
-                        // ignore: avoid_print
-                        onPressed: () => register(),
-                        style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            shape: const BeveledRectangleBorder()),
-                        child: const Text("Continue"))),
-              ),
-              TextButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, Routes.login.name),
-                child: const Text(
-                  "Already have an account?",
-                  style: TextStyle(color: Colors.blueAccent),
                 verticalSpace(96),
                 BottomButton(
                   onPressed: () => register(),
