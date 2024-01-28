@@ -39,15 +39,20 @@ class CoolChart extends HookWidget {
     Future<HydroData> fetchData() async {
       HydroModel hydroData = await locator<HydroService>().getHydroData();
 
-      hydroData.details.where((element) => element.values.demandeTotal != null).toList().reversed.take(5).toList();
+      List<Detail> temp = [];
 
+      hydroData.details.where((element) => element.values.demandeTotal != null).toList().reversed.forEach((element) {
+        temp.add(element);
+      });
+
+      temp = temp.sublist(0, 5);
       int index = hydroData.indexDonneePlusRecent - 1;
 
-      Detail details5 = hydroData.details[0];
-      Detail details4 = hydroData.details[1];
-      Detail details3 = hydroData.details[2];
-      Detail details2 = hydroData.details[3];
-      Detail details1 = hydroData.details[4];
+      Detail details5 = temp[0];
+      Detail details4 = temp[1];
+      Detail details3 = temp[2];
+      Detail details2 = temp[3];
+      Detail details1 = temp[4];
 
       List<Detail> details = [
         details1,

@@ -24,17 +24,16 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // final token = await FirebaseMessaging.instance.getToken();
-  //print('token: $token');
+  final token = await FirebaseMessaging.instance.getToken();
 
-  //await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-   // alert: true,
-   // badge: true,
-   // sound: true,
-  //);
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
 
-  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => const MyApp(),
