@@ -1,4 +1,5 @@
 import 'package:amc_2024/src/theme/colors.dart';
+import 'package:amc_2024/src/view/account/profile.dart';
 import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:amc_2024/src/view/home/home.dart';
 import 'package:amc_2024/src/view/transport/transport.dart';
@@ -31,10 +32,7 @@ class _MyHubPageState extends State<MyHubPage> {
         style: optionStyle,
       ),
     ),
-    const Text(
-      'Index 4: Transport',
-      style: optionStyle,
-    ),
+    const Profile(),
   ];
 
   void _onItemTapped(int index) {

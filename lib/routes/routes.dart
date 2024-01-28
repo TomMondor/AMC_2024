@@ -1,3 +1,4 @@
+import 'package:amc_2024/src/view/account/profile.dart';
 import 'package:amc_2024/src/view/account/register.dart';
 import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:amc_2024/src/view/home/hub.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../src/view/account/login.dart';
 import '../src/view/account/user_info.dart';
 import '../src/view/startup/startup.dart';
-import '../src/view/home/home.dart';
 
 enum Routes {
   home,
@@ -15,7 +15,8 @@ enum Routes {
   register,
   userInfo,
   electricity,
-  hub
+  hub,
+  profile,
 }
 
 extension RoutesExtension on Routes {
@@ -33,6 +34,8 @@ extension RoutesExtension on Routes {
         return '/user-info';
       case Routes.electricity:
         return '/electricity';
+      case Routes.profile:
+        return '/profile';
       default:
         return '/';
     }
@@ -47,4 +50,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   Routes.register.name: (context) => const Register(),
   Routes.userInfo.name: (context) => const UserInfo(),
   Routes.electricity.name: (context) => const Electricity(),
+  Routes.profile.name: (context) => const Profile(),
 };

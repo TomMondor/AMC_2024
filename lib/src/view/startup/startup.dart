@@ -17,7 +17,7 @@ class Startup extends HookWidget {
     useEffect(() {
       Future.delayed(const Duration(seconds: 3), () {
         if (authService.isLogged()) {
-          Navigator.pushReplacementNamed(context, Routes.login.name);
+          Navigator.pushReplacementNamed(context, Routes.hub.name);
         } else {
           Navigator.pushReplacementNamed(context, Routes.login.name);
         }
