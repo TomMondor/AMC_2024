@@ -18,27 +18,6 @@ class Home extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    //////////////
-    final stores = useState(<PlaceModel>[]);
-
-    useEffect(() {
-      Future<void> getNearbyMarkets() async {
-        final LocationService locationService = locator<LocationService>();
-        final PlacesApi placesApi = locator<PlacesApi>();
-
-        if (await locationService.requestPermission()) {
-          final location = await locationService.getCurrentLocation();
-          stores.value = await placesApi.getNearbyStores(location.latitude, location.longitude);
-          print(stores.value);
-        }
-      }
-
-      getNearbyMarkets();
-      return () {};
-    }, []);
-
-    //////////////
-
     final name = useState("");
 
     useEffect(() {

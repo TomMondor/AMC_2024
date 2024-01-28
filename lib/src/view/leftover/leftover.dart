@@ -1,60 +1,99 @@
-import 'package:amc_2024/helpers/ui_helpers.dart';
+import 'dart:math';
+
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/leftover/leftover_item.dart';
-import 'package:amc_2024/src/view/transport/number_label.dart';
-import 'package:amc_2024/src/view/transport/tip_item.dart';
-import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Leftover extends StatefulWidget {
+import '../../../injection_container.dart';
+import '../../application/location_service.dart';
+import '../../domain/place/place_model.dart';
+import '../../infra/places/places_api.dart';
+
+class Leftover extends HookWidget{
   const Leftover({super.key});
 
   @override
-  State<Leftover> createState() => _LeftoverState();
-}
-
-class _LeftoverState extends State<Leftover> with TickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        title: Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Leftover',
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge!
-                .copyWith(color: kcPrimaryVariant),
+
+    final stores = useState(<PlaceModel>[]);
+
+    useEffect(() {
+      Future<void> getNearbyMarkets() async {
+        final LocationService locationService = locator<LocationService>();
+        final PlacesApi placesApi = locator<PlacesApi>();
+
+        if (await locationService.requestPermission()) {
+          final location = await locationService.getCurrentLocation();
+          stores.value = await placesApi.getNearbyStores(location.latitude, location.longitude);
+        }
+      }
+
+      getNearbyMarkets();
+      return () {};
+    }, []);
+
+    if (stores.value.isNotEmpty) {
+      return Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.white,
+              surfaceTintColor: Colors.white,
+              title: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Leftover',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(color: kcPrimaryVariant),
+                ),
+              ),
+            ),
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                // child: Expanded(
+                child: ListView.builder(
+                  itemCount: stores.value.length,
+                  itemBuilder: (context, index) {
+                    return LeftoverItem(
+                      storeName: stores.value[index].name,
+                      distanceToWalk: stores.value[index].distance,
+                      ecoScore: Random().nextInt(5) + 1,
+                    );
+                  }
+                ),
+              ),
+            ),
+          );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          title: Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Leftover',
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(color: kcPrimaryVariant),
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          // child: Expanded(
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            children: const [
-              LeftoverItem(
-                  storeName: "Maxi", distanceToWalk: 10.0, ecoScore: 4.5),
-              LeftoverItem(
-                  storeName: "Metro", distanceToWalk: 3.44, ecoScore: 1.5),
-              LeftoverItem(
-                  storeName: "IGA", distanceToWalk: 2.69, ecoScore: 2.89),
-            ],
+        body: const SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         ),
-      ),
-      // ),
-    );
+      );
+
+    }
   }
 }
