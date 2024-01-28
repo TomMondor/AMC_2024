@@ -5,12 +5,14 @@ class TipItem extends StatelessWidget {
   final IconData iconData;
   final String titleText;
   final String descriptionText;
+  final Color color;
 
   const TipItem(
       {super.key,
       required this.iconData,
       required this.titleText,
-      required this.descriptionText});
+      required this.descriptionText,
+      this.color = kcSecondary});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class TipItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(iconData, color: kcSecondary, size: 40.0),
+          Icon(iconData, color: color, size: 40.0),
           const SizedBox(width: 8.0),
           Flexible(
             child:
