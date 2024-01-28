@@ -222,7 +222,7 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                 color: kcBackground,
                                 child: Center(
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.only(bottom: 8, top: 20),
@@ -238,11 +238,9 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                       ),
                                       const Padding(
                                         padding: EdgeInsets.only(left: 30, right: 30),
-                                        child: RadialGaugeConsumption(),
-                                      ),
-                                      ElevatedButton(
-                                        child: const Text('OK!'),
-                                        onPressed: () => Navigator.pop(context),
+                                        child: SafeArea(
+                                          child: RadialGaugeConsumption(),
+                                        ),
                                       ),
                                     ],
                                   ),
