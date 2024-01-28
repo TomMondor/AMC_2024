@@ -19,13 +19,13 @@ class LeftoverLabel extends StatelessWidget {
       case ProductType.meat:
         return "Viande";
       case ProductType.fish:
-        return "Poisson";
+        return "Fish";
       case ProductType.fruit:
-        return "Fruit";
+        return "Fruits";
       case ProductType.vegetable:
-        return "Legume";
+        return "Veggies";
       case ProductType.other:
-        return "Autre";
+        return "Other";
       default:
         return "N/A";
     }

@@ -25,7 +25,8 @@ class Leftover extends HookWidget{
 
         if (await locationService.requestPermission()) {
           final location = await locationService.getCurrentLocation();
-          stores.value = await placesApi.getNearbyStores(location.latitude, location.longitude);
+          List<PlaceModel> places = await placesApi.getNearbyStores(location.latitude, location.longitude);
+          stores.value = places.sublist(0, min(places.length, 10));
         }
       }
 
@@ -57,10 +58,24 @@ class Leftover extends HookWidget{
                 child: ListView.builder(
                   itemCount: stores.value.length,
                   itemBuilder: (context, index) {
-                    return LeftoverItem(
-                      storeName: stores.value[index].name,
-                      distanceToWalk: stores.value[index].distance,
-                      ecoScore: Random().nextInt(5) + 1,
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Save on near-expiration foods and help businesses reduce their food waste!',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: kcPrimaryVariant)),
+                      );
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 4.0),
+                      child: LeftoverItem(
+                        storeName: stores.value[index].name,
+                        distanceToWalk: stores.value[index].distance,
+                        ecoScore: Random().nextInt(5) + 1,
+                      ),
                     );
                   }
                 ),

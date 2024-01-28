@@ -20,6 +20,9 @@ Color kcShadowColor = Colors.black.withOpacity(0.15);
 const Color kcPink = Color(0xffE6506C);
 const Color kcRed = Color.fromARGB(255, 235, 38, 38);
 
+const Color kcBlue = Color(0xff1338be);
+const Color kcBlueLight = Color(0xff0073cf);
+
 const ColorScheme colorScheme = ColorScheme(
   primary: kcPrimary,
   secondary: kcSecondary,

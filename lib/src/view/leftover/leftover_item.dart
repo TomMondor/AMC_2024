@@ -26,11 +26,11 @@ class LeftoverItem extends StatelessWidget {
     return Card(
       color: Colors.white,
       surfaceTintColor: Colors.transparent,
-      elevation: 5.0,
+      elevation: 3.0,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_borderRadius)),
       child: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
             Row(
@@ -46,40 +46,51 @@ class LeftoverItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Row(
-                  children: [
-                    LeftoverLabel(productType: getProductType()),
-                  ],
-                )
               ],
             ),
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  padding: const EdgeInsets.only(top: 2, bottom: 8.0),
                   child: Text(
                     "Vous pourriez économiser jusqu'à ${Random().nextInt(16) + 5}\$ !",
                     style: const TextStyle(
                         color: kcPrimaryVariant,
                         fontSize: 13.0,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w300),
                   ),
                 ),
               ],
             ),
             Row(
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Row(
+                      children: [
+                        LeftoverLabel(productType: getProductType()),
+                      ]
+                  ),
+                ),
                 Row(
                   children: [
                     const Icon(Icons.directions_walk),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: Text("$distanceToWalk Km"),
+                      child: Text("$distanceToWalk Km", style: const TextStyle(
+                        color: kcPrimaryVariant,
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w600
+                      )),
                     ),
                     const Icon(Icons.energy_savings_leaf),
                     Padding(
                       padding: const EdgeInsets.only(left: 2.0),
-                      child: Text("$ecoScore"),
+                      child: Text("$ecoScore", style: const TextStyle(
+                        color: kcPrimaryVariant,
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w600
+                      )),
                     )
                   ],
                 )
