@@ -1,6 +1,8 @@
 import 'package:amc_2024/src/exceptions/exceptions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../domain/user/user.dart';
+
 class UserRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -36,25 +38,5 @@ class UserRepository {
         message: 'Something went wrong. Please try again later.',
       );
     }
-  }
-}
-
-class User {
-  final String name;
-  final String surname;
-  final String carId;
-
-  User({
-    required this.name,
-    required this.surname,
-    required this.carId,
-  });
-
-  toMap() {
-    return {
-      'name': name,
-      'surname': surname,
-      'carId': carId,
-    };
   }
 }

@@ -1,5 +1,7 @@
 import 'package:amc_2024/src/application/auth_service.dart';
-import 'package:amc_2024/src/infra/account/profile_repo.dart';
+import 'package:amc_2024/src/application/location_service.dart';
+import 'package:amc_2024/src/infra/account/user_repo.dart';
+import 'package:amc_2024/src/infra/places/places_api.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/widgets/card_carbon.dart';
 import 'package:amc_2024/src/view/widgets/card_summary.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../injection_container.dart';
+import '../../domain/place/place_model.dart';
 import '../widgets/card_tip.dart';
 
 class Home extends HookWidget {
@@ -15,13 +18,34 @@ class Home extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthService authService = locator<AuthService>();
-    final UserRepository userRepository = locator<UserRepository>();
+    //////////////
+    final stores = useState(<PlaceModel>[]);
+
+    useEffect(() {
+      Future<void> getNearbyMarkets() async {
+        final LocationService locationService = locator<LocationService>();
+        final PlacesApi placesApi = locator<PlacesApi>();
+
+        if (await locationService.requestPermission()) {
+          final location = await locationService.getCurrentLocation();
+          stores.value = await placesApi.getNearbyStores(location.latitude, location.longitude);
+          print(stores.value);
+        }
+      }
+
+      getNearbyMarkets();
+      return () {};
+    }, []);
+
+    //////////////
 
     final name = useState("");
 
     useEffect(() {
       Future<void> getUserName() async {
+        final AuthService authService = locator<AuthService>();
+        final UserRepository userRepository = locator<UserRepository>();
+
         final userId = authService.currentUser!.uid;
         final userInfo = await userRepository.getUser(userId);
         name.value = userInfo.name;
@@ -33,7 +57,8 @@ class Home extends HookWidget {
 
     useEffect(() {
       Future<void> requestNotificationPermissions() async {
-        NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+        NotificationSettings settings =
+            await FirebaseMessaging.instance.requestPermission(
           alert: true,
           announcement: false,
           badge: true,
@@ -71,10 +96,18 @@ class Home extends HookWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: const [
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
-                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
+                  CardTip(
+                      topIcon: Icons.pie_chart,
+                      descriptionText: "You can wash your clothes"),
+                  CardTip(
+                      topIcon: Icons.pie_chart,
+                      descriptionText: "You can wash your clothes"),
+                  CardTip(
+                      topIcon: Icons.pie_chart,
+                      descriptionText: "You can wash your clothes"),
+                  CardTip(
+                      topIcon: Icons.pie_chart,
+                      descriptionText: "You can wash your clothes"),
                 ],
               ),
             ),
@@ -92,9 +125,21 @@ class Home extends HookWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CardSummary(topIcon: Icons.lightbulb, titleText: '27°C', descriptionText: "Sunny", categoryText: "Temp."),
-                CardSummary(topIcon: Icons.lightbulb, titleText: '370', descriptionText: "KW", categoryText: "Consumption"),
-                CardSummary(topIcon: Icons.lightbulb, titleText: '1-10', descriptionText: "Good", categoryText: "Air Quality"),
+                CardSummary(
+                    topIcon: Icons.lightbulb,
+                    titleText: '27°C',
+                    descriptionText: "Sunny",
+                    categoryText: "Temp."),
+                CardSummary(
+                    topIcon: Icons.lightbulb,
+                    titleText: '370',
+                    descriptionText: "KW",
+                    categoryText: "Consumption"),
+                CardSummary(
+                    topIcon: Icons.lightbulb,
+                    titleText: '1-10',
+                    descriptionText: "Good",
+                    categoryText: "Air Quality"),
               ],
             )
           ],

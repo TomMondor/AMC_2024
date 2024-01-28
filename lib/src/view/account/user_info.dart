@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:amc_2024/src/application/auth_service.dart';
-import 'package:amc_2024/src/infra/account/profile_repo.dart';
+import 'package:amc_2024/src/infra/account/user_repo.dart';
 import 'package:amc_2024/src/view/widgets/custom_raw_auto_complete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
