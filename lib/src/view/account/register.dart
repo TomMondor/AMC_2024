@@ -34,14 +34,12 @@ class Register extends HookWidget {
         try {
           isLoading.value = false;
           AuthService authService = locator<AuthService>();
-          print(email);
           await authService.register(email, password);
 
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.userInfo.name);
           }
         } on AuthenticationException catch (e) {
-          print("WTF");
           isLoading.value = false;
           showDialog(
             context: context,
