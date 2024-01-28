@@ -34,6 +34,7 @@ class CoolChart extends HookWidget {
 
     Future<HydroData> fetchData() async {
       HydroModel hydroData = await locator<HydroService>().getHydroData();
+
       int index = hydroData.indexDonneePlusRecent - 1;
 
       Detail details5 = hydroData.details[index];
@@ -75,17 +76,6 @@ class CoolChart extends HookWidget {
                     mainData(data.value!),
                   )
                 : Container(),
-          ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              'avg',
-              style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.5)),
-            ),
           ),
         ),
       ],

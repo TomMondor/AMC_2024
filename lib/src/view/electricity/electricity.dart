@@ -34,6 +34,7 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
         ),
         bottom: TabBar(
+          labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
           indicatorSize: TabBarIndicatorSize.label, // You can also use TabBarIndicatorSize.tab for smaller indicator
           controller: _tabController,
           tabs: const <Widget>[
@@ -97,14 +98,23 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
                             context: context,
                             builder: (BuildContext context) {
                               return Container(
-                                height: 400,
-                                color: Colors.amber,
+                                height: 200,
+                                color: kcPrimaryVariant,
                                 child: Center(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
-                                      const Text('Modal BottomSheet'),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 30, right: 30),
+                                        child: SizedBox(
+                                          height: 125, // Set the height as needed
+                                          child: ListView(
+                                            scrollDirection: Axis.horizontal,
+                                            children: const [Text("Hello")],
+                                          ),
+                                        ),
+                                      ),
                                       ElevatedButton(
                                         child: const Text('OK!'),
                                         onPressed: () => Navigator.pop(context),
