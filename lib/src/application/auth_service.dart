@@ -42,7 +42,7 @@ class AuthService {
   Future<void> logout() async {
     try {
       await _auth.signOut();
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       throw const AuthenticationException(
         message: 'Something went wrong. Please try again later.',
       );
