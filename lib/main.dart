@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         Locale('en'),
       ],
 
-      initialRoute: Routes.userInfo.name, //Routes.startup.name,
+      initialRoute: Routes.startup.name,
 
       routes: appRoutes,
     );
