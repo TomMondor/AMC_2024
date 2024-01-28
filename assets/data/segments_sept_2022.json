@@ -1,0 +1,372 @@
+[
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 28380,
+        "timestamp": "2022-09-01T15:57:45Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 853,
+        "timestamp": "2022-09-01T18:17:00.385Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 366,
+        "timestamp": "2022-09-01T18:39:46.088Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 2872,
+        "timestamp": "2022-09-01T19:04:13.284Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 1637,
+        "timestamp": "2022-09-01T19:44:11.289Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 2574,
+        "timestamp": "2022-09-02T00:53:47.095Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 1551,
+        "timestamp": "2022-09-02T02:09:35.242Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 1090,
+        "timestamp": "2022-09-02T06:01:46.923Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 25229,
+        "timestamp": "2022-09-02T13:33:38Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 10648,
+        "timestamp": "2022-09-02T17:49:02.571Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 1657,
+        "timestamp": "2022-09-02T18:47:14Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 1521,
+        "timestamp": "2022-09-02T19:11:29.582Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 9785,
+        "timestamp": "2022-09-02T19:24:16.211Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 2987,
+        "timestamp": "2022-09-03T13:30:20.819Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 3046,
+        "timestamp": "2022-09-03T13:46:59.869Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 2836,
+        "timestamp": "2022-09-03T19:04:49Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 18773,
+        "timestamp": "2022-09-03T19:14:25Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 23039,
+        "timestamp": "2022-09-03T21:10:30Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 9314,
+        "timestamp": "2022-09-05T22:32:12.917Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 9325,
+        "timestamp": "2022-09-06T01:58:48Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 20240,
+        "timestamp": "2022-09-06T10:18:42.919Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 20428,
+        "timestamp": "2022-09-06T19:50:00.245Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 16948,
+        "timestamp": "2022-09-07T19:16:45.994Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 4475,
+        "timestamp": "2022-09-08T00:47:15.240Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 23284,
+        "timestamp": "2022-09-08T03:09:50Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 17520,
+        "timestamp": "2022-09-08T14:36:17.926Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 3627,
+        "timestamp": "2022-09-08T22:08:56Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 417,
+        "timestamp": "2022-09-08T22:35:04.170Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 1562,
+        "timestamp": "2022-09-08T22:54:39.521Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 56,
+        "timestamp": "2022-09-09T02:08:46.126Z"
+    },
+    {
+        "activityType": "IN_BUS",
+        "distanceMeters": 3853,
+        "timestamp": "2022-09-09T02:18:12Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 838,
+        "timestamp": "2022-09-09T02:28:39.154Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 138,
+        "timestamp": "2022-09-09T03:32:10.430Z"
+    },
+    {
+        "activityType": "IN_BUS",
+        "distanceMeters": 5711,
+        "timestamp": "2022-09-09T05:14:54.341Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 1230,
+        "timestamp": "2022-09-09T14:32:54Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 13390,
+        "timestamp": "2022-09-09T15:00:27.280Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 10630,
+        "timestamp": "2022-09-12T11:10:58.070Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 7789,
+        "timestamp": "2022-09-12T11:40:27.408Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 592,
+        "timestamp": "2022-09-12T18:01:11.615Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 21890,
+        "timestamp": "2022-09-12T19:40:50.938Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 5730,
+        "timestamp": "2022-09-13T14:04:08.966Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 4222,
+        "timestamp": "2022-09-13T15:52:01.324Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 3026,
+        "timestamp": "2022-09-13T16:14:29.897Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 19543,
+        "timestamp": "2022-09-14T11:38:52.378Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 18276,
+        "timestamp": "2022-09-14T19:01:08.894Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 14968,
+        "timestamp": "2022-09-15T14:18:22.704Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 5952,
+        "timestamp": "2022-09-15T16:11:16.098Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 5285,
+        "timestamp": "2022-09-15T17:51:05Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 1237,
+        "timestamp": "2022-09-15T21:50:50.692Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 465,
+        "timestamp": "2022-09-15T22:30:31.184Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 1153,
+        "timestamp": "2022-09-16T01:04:13.806Z"
+    },
+    {
+        "activityType": "WALKING",
+        "distanceMeters": 842,
+        "timestamp": "2022-09-16T06:00:18.443Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 14603,
+        "timestamp": "2022-09-16T15:25:59.659Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 17172,
+        "timestamp": "2022-09-19T12:10:15.452Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 8195,
+        "timestamp": "2022-09-19T18:05:41.785Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 18113,
+        "timestamp": "2022-09-19T18:35:12.750Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 9862,
+        "timestamp": "2022-09-20T16:14:40.110Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 7971,
+        "timestamp": "2022-09-20T16:44:09.047Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 14301,
+        "timestamp": "2022-09-21T01:49:05.509Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 9002,
+        "timestamp": "2022-09-22T15:11:14.704Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 7556,
+        "timestamp": "2022-09-22T15:43:25.244Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 14319,
+        "timestamp": "2022-09-22T22:31:39.128Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 18215,
+        "timestamp": "2022-09-26T12:15:41.971Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 8178,
+        "timestamp": "2022-09-26T20:13:03.217Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 14087,
+        "timestamp": "2022-09-26T20:39:25.833Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 6884,
+        "timestamp": "2022-09-27T21:05:52.145Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 15235,
+        "timestamp": "2022-09-27T22:23:42.513Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 16017,
+        "timestamp": "2022-09-28T01:37:55.189Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 19911,
+        "timestamp": "2022-09-28T15:17:46.157Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 17595,
+        "timestamp": "2022-09-29T01:40:51.957Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 9750,
+        "timestamp": "2022-09-29T16:12:44.413Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 7931,
+        "timestamp": "2022-09-29T16:41:14.170Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 23289,
+        "timestamp": "2022-09-29T19:38:40.212Z"
+    },
+    {
+        "activityType": "VEHICLE",
+        "distanceMeters": 18964,
+        "timestamp": "2022-09-30T17:43:43.414Z"
+    }
+]

@@ -1,27 +1,37 @@
 import 'package:amc_2024/helpers/ui_helpers.dart';
+import 'package:amc_2024/injection_container.dart';
+import 'package:amc_2024/src/application/trips_service.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/transport/number_label.dart';
 import 'package:amc_2024/src/view/transport/tip_item.dart';
+import 'package:amc_2024/src/view/transport/use_car_trips_carbon.dart';
+import 'package:amc_2024/src/view/transport/use_trip_history.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Transport extends StatefulWidget {
+class Transport extends HookWidget {
   const Transport({super.key});
 
   @override
-  State<Transport> createState() => _TransportState();
-}
-
-class _TransportState extends State<Transport> with TickerProviderStateMixin {
-  int _average = 1230;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final carbonKgLastMonth = useCarTripsCarbonKg();
+
+    final trips = useTripHistory();
+    TripsService tripsService = locator<TripsService>();
+    final walkDistance = useState(0);
+    final publicDistance = useState(0);
+    final carDistance = useState(0);
+
+    useEffect(() {
+      walkDistance.value = tripsService
+          .computeTripsTotalLengthInKm(tripsService.getWalkTrips(trips.value));
+      publicDistance.value = tripsService
+          .computeTripsTotalLengthInKm(tripsService.getBusTrips(trips.value));
+      carDistance.value = tripsService
+          .computeTripsTotalLengthInKm(tripsService.getCarTrips(trips.value));
+    }, [trips.value]);
+
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -56,7 +66,7 @@ class _TransportState extends State<Transport> with TickerProviderStateMixin {
                     Padding(
                       padding: const EdgeInsets.only(right: 12.0),
                       child: AnimatedDigitWidget(
-                        value: _average,
+                        value: carbonKgLastMonth.value,
                         textStyle: Theme.of(context)
                             .textTheme
                             .headlineLarge!
@@ -93,14 +103,17 @@ class _TransportState extends State<Transport> with TickerProviderStateMixin {
                             .bodyMedium!
                             .copyWith(color: kcPrimaryVariant)),
                     verticalSpace(32),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        NumberLabel(score: 5, descriptionText: 'Walk'),
                         NumberLabel(
-                            score: 300, descriptionText: 'Public'),
-                        NumberLabel(score: 275, descriptionText: 'Car'),
+                            score: walkDistance.value, descriptionText: 'Walk'),
+                        NumberLabel(
+                            score: publicDistance.value,
+                            descriptionText: 'Public'),
+                        NumberLabel(
+                            score: carDistance.value, descriptionText: 'Car'),
                       ],
                     ),
                     verticalSpace(58),
