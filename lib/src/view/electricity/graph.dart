@@ -82,6 +82,32 @@ class CoolChart extends HookWidget {
     );
   }
 
+  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    const style = TextStyle(
+      fontSize: 16,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+      
+    );
+    Widget text;
+    switch (value.toInt()) {
+      case 1:
+        text = const Text('45 min. ago', style: style);
+        break;
+      case 3:
+        text = const Text('15 min. ago', style: style);
+        break;
+      default:
+        text = const Text('', style: style);
+        break;
+    }
+
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: text,
+    );
+  }
+
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
@@ -125,18 +151,23 @@ class CoolChart extends HookWidget {
           );
         },
       ),
-      titlesData: const FlTitlesData(
+      titlesData: FlTitlesData(
         show: true,
-        rightTitles: AxisTitles(
+        rightTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: AxisTitles(
+        topTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
         bottomTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 30,
+            interval: 1,
+            getTitlesWidget: bottomTitleWidgets,
+          ),
         ),
-        leftTitles: AxisTitles(
+        leftTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
       ),

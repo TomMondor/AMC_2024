@@ -35,7 +35,7 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
         ),
         bottom: TabBar(
           labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
-          indicatorSize: TabBarIndicatorSize.label, // You can also use TabBarIndicatorSize.tab for smaller indicator
+          indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
           tabs: const <Widget>[
             Tab(
