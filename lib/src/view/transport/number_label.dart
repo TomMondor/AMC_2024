@@ -1,6 +1,8 @@
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/colors.dart';
+
 class NumberLabel extends StatelessWidget {
   final int score;
   final String descriptionText;
@@ -11,19 +13,31 @@ class NumberLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        AnimatedDigitWidget(
-          value: score,
-          textStyle: const TextStyle(
-              color: Colors.black, fontSize: 25.0, fontWeight: FontWeight.bold),
+        Row(
+          children: [
+            AnimatedDigitWidget(
+              value: score,
+              textStyle: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    color: kcPrimaryVariant,
+                  ),
+            ),
+            Text(
+              ' km',
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: kcPrimaryVariant,
+                  ),
+            ),
+          ],
         ),
         Text(
           descriptionText,
-          style: const TextStyle(
-            color: Colors.black54,
-            fontSize: 14.0,
-            fontWeight: FontWeight.bold,
-          ),
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: kcPrimaryVariant,
+              ),
         ),
       ],
     );

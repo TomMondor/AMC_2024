@@ -1,3 +1,4 @@
+import 'package:amc_2024/helpers/ui_helpers.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/transport/number_label.dart';
 import 'package:amc_2024/src/view/transport/tip_item.dart';
@@ -19,105 +20,127 @@ class _TransportState extends State<Transport> with TickerProviderStateMixin {
     super.initState();
   }
 
-  Color? calculateTextColor(double value) {
-    double position = (value - 0.0) / (1.0 - 0.0);
-    position = position.clamp(0.0, 1.0);
-
-    return ColorTween(
-      begin: Colors.green,
-      end: Colors.red,
-    ).lerp(position);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(
-            'Transport',
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: kcPrimaryVariant),
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          title: Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Transport',
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(color: kcPrimaryVariant),
+            ),
           ),
         ),
-        body: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  const Text(
-                    "Average",
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  AnimatedDigitWidget(
-                    value: _average,
-                    textStyle: TextStyle(
-                        color: calculateTextColor(0.75),
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-              child: const Column(children: [
-                Text(
-                  "Footprint",
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8.0),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                verticalSpace(24),
+                Text('My Footprint',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: kcPrimaryVariant)),
+                verticalSpace(16),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    NumberLabel(score: 75, descriptionText: "Walk"),
-                    NumberLabel(score: 105, descriptionText: "Car"),
-                    NumberLabel(score: 5, descriptionText: "Bus"),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: AnimatedDigitWidget(
+                        value: _average,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .headlineLarge!
+                            .copyWith(color: kcPrimaryVariant),
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.expand_less,
+                          color: kcPrimary,
+                          size: 40.0,
+                        ),
+                        Text(
+                          'kg',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: kcPrimaryVariant, fontSize: 30),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                Divider(),
-              ]),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                  child: Column(children: [
+                    Text("CO2",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: kcPrimaryVariant)),
+                    verticalSpace(32),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        NumberLabel(score: 5, descriptionText: 'Walk'),
+                        NumberLabel(
+                            score: 300, descriptionText: 'Public'),
+                        NumberLabel(score: 275, descriptionText: 'Car'),
+                      ],
+                    ),
+                    verticalSpace(58),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'What does it mean?',
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              color: kcPrimaryVariant,
+                            ),
+                      ),
+                    ),
+                    verticalSpace(16),
+                  ]),
+                ),
+                Expanded(
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: const [
+                      TipItem(
+                          iconData: Icons.directions_walk,
+                          titleText: 'Maybe a little walk?',
+                          descriptionText:
+                              'If you walked instead of taking your car, you would have saved 5kg of CO2 for distances less than 5km.'),
+                      TipItem(
+                          iconData: Icons.directions_bus,
+                          titleText: 'Cheap bus tickets',
+                          descriptionText:
+                              'There is a sale on the annual bus pass for students. You can save up to 50% on your bus tickets.'),
+                      TipItem(
+                          iconData: Icons.local_taxi,
+                          titleText: 'Carpool to Montreal',
+                          descriptionText:
+                              'Your calendar suggests that you are going to Montreal for AMC 2024. You can carpool with other students and save up to 275kg of CO2.'),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: const [
-                  TipItem(
-                      iconData: Icons.qr_code,
-                      titleText: "Use the Cahome Setup Code",
-                      descriptionText:
-                          "You can control all your Smart Home and Enjoy Smart Life"),
-                  TipItem(
-                      iconData: Icons.qr_code,
-                      titleText: "Use the Cahome Setup Code",
-                      descriptionText:
-                          "You can control all your Smart Home and Enjoy Smart Life"),
-                  TipItem(
-                      iconData: Icons.qr_code,
-                      titleText: "Use the Cahome Setup Code",
-                      descriptionText:
-                          "You can control all your Smart Home and Enjoy Smart Life"),
-                  TipItem(
-                      iconData: Icons.qr_code,
-                      titleText: "Use the Cahome Setup Code",
-                      descriptionText:
-                          "You can control all your Smart Home and Enjoy Smart Life"),
-                ],
-              ),
-            ),
-          ],
+          ),
         ));
   }
 }
