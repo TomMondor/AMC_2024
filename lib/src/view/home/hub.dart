@@ -71,9 +71,9 @@ class _MyHubPageState extends State<MyHubPage> {
             label: 'Electricity',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.hub, color: kcPrimary,),
-            icon: Icon(Icons.hub, color: kcLightSecondary,),
-            label: 'Hub',
+            selectedIcon: Icon(Icons.directions_car_filled, color: kcPrimary,),
+            icon: Icon(Icons.directions_car_filled, color: kcLightSecondary,),
+            label: 'Transport',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.shopping_basket, color: kcPrimary,),
@@ -81,9 +81,9 @@ class _MyHubPageState extends State<MyHubPage> {
             label: 'Alimentation',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.directions_car_filled, color: kcPrimary,),
-            icon: Icon(Icons.directions_car_filled, color: kcLightSecondary,),
-            label: 'Transport',
+            selectedIcon: Icon(Icons.person, color: kcPrimary,),
+            icon: Icon(Icons.person, color: kcLightSecondary,),
+            label: 'Profile',
           ),
         ],
       ),

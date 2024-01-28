@@ -18,6 +18,7 @@ const Color kcGold = Color(0xffEEAC14);
 const Color kcPlatinum = Color(0xff7E7E7E);
 Color kcShadowColor = Colors.black.withOpacity(0.15);
 const Color kcPink = Color(0xffE6506C);
+const Color kcRed = Color.fromARGB(255, 230, 80, 80);
 
 const ColorScheme colorScheme = ColorScheme(
   primary: kcPrimary,

@@ -87,7 +87,7 @@ class _TransportState extends State<Transport> with TickerProviderStateMixin {
                   padding:
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                   child: Column(children: [
-                    Text("CO2",
+                    Text("CO2 in the last month",
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!

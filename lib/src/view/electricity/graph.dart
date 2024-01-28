@@ -62,7 +62,7 @@ class CoolChart extends HookWidget {
 
       int variation = (details5.values.demandeTotal! - details1.values.demandeTotal!).toInt();
       bool hasIncreased = variation > 0 ? true : false;
-      int pourcentageVariation = ((details5.values.demandeTotal! / details1.values.demandeTotal!) * 100).toInt();
+      int pourcentageVariation = (100 - ((details5.values.demandeTotal! / details1.values.demandeTotal!) * 100).toInt()).abs();
       methodFromParent?.call(variation, hasIncreased, pourcentageVariation);
 
       return newData;
@@ -191,9 +191,6 @@ class CoolChart extends HookWidget {
       lineBarsData: [
         LineChartBarData(
           showingIndicators: [0, 1, 2, 3, 4],
-          shadow: const Shadow(
-            blurRadius: 8,
-          ),
           spots: [
             FlSpot(0, data.details[0].values.demandeTotal!.toDouble()),
             FlSpot(1, data.details[1].values.demandeTotal!.toDouble()),
