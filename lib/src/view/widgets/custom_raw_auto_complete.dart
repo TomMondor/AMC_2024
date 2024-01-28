@@ -57,7 +57,10 @@ class CustomAutocomplete extends StatelessWidget {
                         onSelected(option);
                       },
                       child: ListTile(
-                        title: Text(option),
+                        title: Text(
+                          option,
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ),
                     ))
                 .toList(),
