@@ -1,18 +1,39 @@
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/widgets/card_carbon.dart';
 import 'package:amc_2024/src/view/widgets/card_summary.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../widgets/card_tip.dart';
 
-
-class Home extends StatelessWidget {
+class Home extends HookWidget {
   final String name;
 
   const Home({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      Future<void> requestNotificationPermissions() async {
+        NotificationSettings settings =
+            await FirebaseMessaging.instance.requestPermission(
+          alert: true,
+          announcement: false,
+          badge: true,
+          carPlay: false,
+          criticalAlert: false,
+          provisional: false,
+          sound: true,
+        );
+
+        print('User granted permission: ${settings.authorizationStatus}');
+      }
+
+      requestNotificationPermissions();
+      return () {};
+    }, []);
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
