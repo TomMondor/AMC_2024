@@ -2,6 +2,7 @@ import 'package:amc_2024/helpers/ui_helpers.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardCarbon extends StatelessWidget {
   final int score;
@@ -40,9 +41,9 @@ class CardCarbon extends StatelessWidget {
                         fontSize: 72.0,
                         fontWeight: FontWeight.w800),
                   ),
-                  const Text(
-                    'Your carbon\nprint',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.footprint,
+                    style: const TextStyle(
                         color: kcPrimaryVariant,
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold),

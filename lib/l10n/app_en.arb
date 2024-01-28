@@ -1,5 +1,15 @@
 {
-    "page_title": "Flutter Demo Home Page",
-    "pushed_text": "You have pushed the button this many times:",
-    "increment_btn": "Increment"
+    "hello": "Hi",
+    "footprint": "Your carbon\nprint",
+    "consumption": "Consumption",
+    "air": "Air Quality",
+    "quick_look": "Quick Look",
+    "slack_title": "Slack period",
+    "slack_text": "A slow period is starting, do you have a laundry load to do?",
+    "heating_title": "Heating an empty house?",
+    "heating_text": "Confirm your work schedule to automatically reduce the heating in your absence.",
+    "bus_title": "38km of car to do by bus",
+    "bus_text": "Some of your car trips would have been quicker by bus!",
+    "savings_title": "Missed $11.50 savings!",
+    "savings_text": "In the last month, these are your car trips of 2km or less, which you could have made on foot!"
 }

@@ -34,6 +34,7 @@ class CardTip extends StatelessWidget {
                   ),
                   Text(
                     titleText,
+                    overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white, fontSize: 13),
                   ),
                 ],

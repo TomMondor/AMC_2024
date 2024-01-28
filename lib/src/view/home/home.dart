@@ -4,14 +4,13 @@ import 'package:amc_2024/src/infra/http_client.dart';
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/widgets/card_carbon.dart';
 import 'package:amc_2024/src/view/widgets/card_summary.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../injection_container.dart';
-import '../transport/use_car_trips_carbon.dart';
 import '../widgets/card_tip.dart';
 
 class Home extends HookWidget {
@@ -117,7 +116,7 @@ class Home extends HookWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Hi ${name.value} !",
+                "${AppLocalizations.of(context)!.hello} ${name.value} !",
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       color: kcPrimaryVariant,
                     ),
@@ -128,39 +127,35 @@ class Home extends HookWidget {
               height: 125, // Set the height as needed
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: const [
+                children: [
                   CardTip(
                     topIcon: Icons.whatshot,
-                    descriptionText:
-                        "A slow period is starting, do you have a laundry load to do?",
-                    titleText: "Slack period",
+                    descriptionText: AppLocalizations.of(context)!.slack_text,
+                    titleText: AppLocalizations.of(context)!.slack_title,
                   ),
                   CardTip(
                     topIcon: Icons.house,
-                    descriptionText:
-                        "Confirm your work schedule to automatically reduce the heating in your absence.",
-                    titleText: "Heating an empty house?",
+                    descriptionText: AppLocalizations.of(context)!.heating_text,
+                    titleText: AppLocalizations.of(context)!.heating_title,
                   ),
                   CardTip(
                     topIcon: Icons.car_crash,
-                    descriptionText:
-                        "Some of your car trips would have been quicker by bus!",
-                    titleText: "38km of car to do by bus",
+                    descriptionText: AppLocalizations.of(context)!.bus_text,
+                    titleText: AppLocalizations.of(context)!.bus_title,
                   ),
                   CardTip(
                     topIcon: Icons.attach_money,
-                    descriptionText:
-                        "In the last month, these are your car trips of 2km or less, which you could have made on foot!",
-                    titleText: "Missed \$11.50 savings!",
+                    descriptionText: AppLocalizations.of(context)!.savings_text,
+                    titleText: AppLocalizations.of(context)!.savings_title,
                   )
                 ],
               ),
             ),
-            const Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Quick Look",
-                style: TextStyle(
+                AppLocalizations.of(context)!.quick_look,
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
@@ -175,16 +170,16 @@ class Home extends HookWidget {
                     titleText: '${temperature.value}°C',
                     descriptionText: weatherCondition.value,
                     categoryText: "Temp."),
-                const CardSummary(
+                CardSummary(
                     topIcon: Icons.electric_bolt,
                     titleText: '757',
                     descriptionText: "Wh",
-                    categoryText: "Consumption"),
+                    categoryText: AppLocalizations.of(context)!.consumption),
                 CardSummary(
                     topIcon: Icons.air,
                     titleText: getAqiRange(airPollution.value),
                     descriptionText: getAqiText(airPollution.value),
-                    categoryText: "Air Quality"),
+                    categoryText: AppLocalizations.of(context)!.air),
               ],
             )
           ],

@@ -1,5 +1,15 @@
 {
-    "page_title": "Flutter Page Accueil Demo",
-    "pushed_text": "Tu as appuyé sur le bouton ce nombre de fois: ",
-    "increment_btn": "Incrementer"
+    "hello": "Bonjour",
+    "footprint": "Votre empreinte\ncarbone",
+    "consumption": "Consommation",
+    "air": "Qualité d'air",
+    "quick_look": "Regard rapide",
+    "slack_title": "Période creuse",
+    "slack_text": "Une période creuse commence, du linge à laver?",
+    "heating_title": "Chauffer une maison vide ?",
+    "heating_text": "Confirmez votre horaire de travail pour réduire automatiquement le chauffage en votre absence.",
+    "bus_title": "38km d'auto à faire en bus",
+    "bus_text": "Certains de vos déplacements en voiture auraient été plus rapides en bus!",
+    "savings_title": "Sauver 11,50$!",
+    "savings_text": "Ce sont vos trajets d'auto de moins de 2km faisable à pied."
 }
