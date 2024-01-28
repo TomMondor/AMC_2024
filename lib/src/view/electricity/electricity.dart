@@ -16,7 +16,7 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
   late final TabController _tabController;
   late int cityGraphVariation = 0;
   late bool cityGraphHasIncreased = false;
-  late int cityGraphPourcentageVariation = 0;
+  late String cityGraphPourcentageVariation = "0";
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
     _tabController = TabController(length: 2, vsync: this);
   }
 
-  void setCityGraphVariation(int variation, bool hasIncreased, int pourcentageVariation) {
+  void setCityGraphVariation(int variation, bool hasIncreased, String pourcentageVariation) {
     setState(() {
       cityGraphVariation = variation;
       cityGraphHasIncreased = hasIncreased;

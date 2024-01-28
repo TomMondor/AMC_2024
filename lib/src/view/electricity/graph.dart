@@ -28,7 +28,7 @@ class CoolChart extends HookWidget {
     kcSecondary,
   ];
 
-  final Function(int variation, bool hasIncreased, int pourcentageVariation)? methodFromParent;
+  final Function(int variation, bool hasIncreased, String pourcentageVariation)? methodFromParent;
 
   CoolChart({super.key, this.methodFromParent});
 
@@ -39,13 +39,15 @@ class CoolChart extends HookWidget {
     Future<HydroData> fetchData() async {
       HydroModel hydroData = await locator<HydroService>().getHydroData();
 
+      hydroData.details.where((element) => element.values.demandeTotal != null).toList().reversed.take(5).toList();
+
       int index = hydroData.indexDonneePlusRecent - 1;
 
-      Detail details5 = hydroData.details[index];
-      Detail details4 = hydroData.details[index - 1];
-      Detail details3 = hydroData.details[index - 2];
-      Detail details2 = hydroData.details[index - 3];
-      Detail details1 = hydroData.details[index - 4];
+      Detail details5 = hydroData.details[0];
+      Detail details4 = hydroData.details[1];
+      Detail details3 = hydroData.details[2];
+      Detail details2 = hydroData.details[3];
+      Detail details1 = hydroData.details[4];
 
       List<Detail> details = [
         details1,
@@ -55,15 +57,19 @@ class CoolChart extends HookWidget {
         details5,
       ];
 
-      int maxY = details.map((detail) => detail.values.demandeTotal).reduce((max, current) => max! > current! ? max : current)!.toInt();
+      double calculatePourcentageVariation(double current, double previous) {
+        return (100 - ((current / previous) * 100)).abs();
+      }
 
+      int maxY = details.map((detail) => detail.values.demandeTotal).reduce((max, current) => max! > current! ? max : current)!.toInt();
       HydroData newData =
           HydroData(dateStart: hydroData.dateStart, dateEnd: hydroData.dateEnd, mostRecentIndex: index, details: details, maxY: maxY);
-
       int variation = (details5.values.demandeTotal! - details1.values.demandeTotal!).toInt();
       bool hasIncreased = variation > 0 ? true : false;
-      int pourcentageVariation = (100 - ((details5.values.demandeTotal! / details1.values.demandeTotal!) * 100).toInt()).abs();
-      methodFromParent?.call(variation, hasIncreased, pourcentageVariation);
+      double pourcentageVariation = calculatePourcentageVariation(details5.values.demandeTotal!, details1.values.demandeTotal!);
+      String formattedPourcentageVariation = pourcentageVariation.toStringAsFixed(1);
+
+      methodFromParent?.call(variation, hasIncreased, formattedPourcentageVariation);
 
       return newData;
     }
