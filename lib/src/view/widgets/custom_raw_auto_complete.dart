@@ -1,5 +1,6 @@
 import 'package:amc_2024/src/view/widgets/text_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomAutocomplete extends StatelessWidget {
   final TextEditingController textEditingController;
@@ -42,7 +43,7 @@ class CustomAutocomplete extends StatelessWidget {
           controller: textEditingController,
           focusNode: fieldFocusNode,
           validator: validateName,
-          labelText: 'Car Model',
+          labelText: AppLocalizations.of(context)!.car_model,
         );
       },
       optionsViewBuilder: (BuildContext context,

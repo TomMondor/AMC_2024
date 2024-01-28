@@ -3,6 +3,7 @@ import 'package:amc_2024/src/view/account/validators.dart';
 import 'package:amc_2024/src/view/widgets/bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../helpers/ui_helpers.dart';
 import '../../../injection_container.dart';
@@ -56,7 +57,7 @@ class Login extends HookWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 76, 24, 24),
+          padding: const EdgeInsets.fromLTRB(20, 76, 20, 24),
           child: Form(
             key: formKey,
             child: Column(
@@ -71,7 +72,7 @@ class Login extends HookWidget {
                 ),
                 verticalSpace(36),
                 Text(
-                  "Login",
+                  AppLocalizations.of(context)!.login,
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: kcPrimaryVariant,
                       ),
@@ -82,7 +83,7 @@ class Login extends HookWidget {
                   controller: emailController,
                   validator: validateEmail,
                   keyboardType: TextInputType.emailAddress,
-                  labelText: 'Email',
+                  labelText: AppLocalizations.of(context)!.email,
                 ),
                 verticalSpace(32),
                 EchoHubTextInput(
@@ -91,18 +92,18 @@ class Login extends HookWidget {
                   validator: validatePassword,
                   keyboardType: TextInputType.text,
                   obscureText: true,
-                  labelText: 'Password',
+                  labelText: AppLocalizations.of(context)!.password,
                 ),
                 verticalSpace(96),
                 BottomButton(
                   onPressed: () => login(),
-                  title: 'Login',
+                  title: AppLocalizations.of(context)!.login,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "You don't have an account?",
+                      AppLocalizations.of(context)!.dont_have_account,
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -112,7 +113,7 @@ class Login extends HookWidget {
                       onPressed: () => Navigator.pushReplacementNamed(
                           context, Routes.register.name),
                       child: Text(
-                        'SIGN UP',
+                        AppLocalizations.of(context)!.signup.toUpperCase(),
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!

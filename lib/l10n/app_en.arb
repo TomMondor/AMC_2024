@@ -11,5 +11,14 @@
     "bus_title": "38km of car to do by bus",
     "bus_text": "Some of your car trips would have been quicker by bus!",
     "savings_title": "Missed $11.50 savings!",
-    "savings_text": "In the last month, these are your car trips of 2km or less, which you could have made on foot!"
+    "savings_text": "In the last month, these are your car trips of 2km or less, which you could have made on foot!",
+    "login": "Login",
+    "signup": "Sign up",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "car_model": "Car model",
+    "email": "Email",
+    "password": "Password",
+    "dont_have_account": "You don't have an account?",
+    "already_have_account": "You have an account?"
 }

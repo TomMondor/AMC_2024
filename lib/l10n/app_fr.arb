@@ -11,5 +11,14 @@
     "bus_title": "38km d'auto à faire en bus",
     "bus_text": "Certains de vos déplacements en voiture auraient été plus rapides en bus!",
     "savings_title": "Sauver 11,50$!",
-    "savings_text": "Ce sont vos trajets d'auto de moins de 2km faisable à pied."
+    "savings_text": "Ce sont vos trajets d'auto de moins de 2km faisable à pied.",
+    "login": "Login",
+    "signup": "S'inscrire",
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "car_model": "Modèle d'auto",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "dont_have_account": "Vous n'avez pas de compte?",
+    "already_have_account": "Vous avez déjà un compte?"
 }

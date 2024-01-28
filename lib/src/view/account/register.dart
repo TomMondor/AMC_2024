@@ -8,6 +8,7 @@ import 'package:amc_2024/src/view/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../helpers/ui_helpers.dart';
 import '../../../injection_container.dart';
@@ -111,7 +112,7 @@ class Register extends HookWidget {
                 ),
                 verticalSpace(36),
                 Text(
-                  "Sign Up",
+                  AppLocalizations.of(context)!.signup,
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: kcPrimaryVariant,
                       ),
@@ -122,7 +123,7 @@ class Register extends HookWidget {
                   controller: firstNameController,
                   validator: validateName,
                   keyboardType: TextInputType.name,
-                  labelText: 'First Name',
+                  labelText: AppLocalizations.of(context)!.first_name,
                 ),
                 verticalSpace(24),
                 EchoHubTextInput(
@@ -130,7 +131,7 @@ class Register extends HookWidget {
                   controller: lastNameController,
                   validator: validateName,
                   keyboardType: TextInputType.name,
-                  labelText: 'Last Name',
+                  labelText: AppLocalizations.of(context)!.last_name,
                 ),
                 verticalSpace(24),
                 CustomAutocomplete(
@@ -142,7 +143,7 @@ class Register extends HookWidget {
                   controller: emailController,
                   validator: validateEmail,
                   keyboardType: TextInputType.emailAddress,
-                  labelText: 'Email',
+                  labelText: AppLocalizations.of(context)!.email,
                 ),
                 verticalSpace(24),
                 EchoHubTextInput(
@@ -151,18 +152,18 @@ class Register extends HookWidget {
                   validator: validatePassword,
                   keyboardType: TextInputType.text,
                   obscureText: true,
-                  labelText: 'Password',
+                  labelText: AppLocalizations.of(context)!.password,
                 ),
                 verticalSpace(48),
                 BottomButton(
                   onPressed: () => register(),
-                  title: 'Sign Up',
+                  title: AppLocalizations.of(context)!.signup,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "You have an account?",
+                      AppLocalizations.of(context)!.already_have_account,
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -172,7 +173,7 @@ class Register extends HookWidget {
                       onPressed: () => Navigator.pushReplacementNamed(
                           context, Routes.login.name),
                       child: Text(
-                        'LOG IN',
+                        AppLocalizations.of(context)!.login.toUpperCase(),
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!
