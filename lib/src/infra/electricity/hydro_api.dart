@@ -10,7 +10,9 @@ class HydroApi {
 
   Future<HydroModel> getHydroData() async {
     // try { //TODO custom exception?
-    final Response response = await httpClient.get('', '');
+    final Response response = await httpClient.get(
+        'https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json',
+        '');
     var mappedData = jsonDecode(response.data);
 
     return HydroModel.fromJson(mappedData);

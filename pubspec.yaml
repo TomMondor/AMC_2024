@@ -50,6 +50,7 @@ dependencies:
   dio: ^5.4.0
   syncfusion_flutter_charts: ^24.1.47+2
   animated_digit: ^3.2.3
+  firebase_messaging: ^14.7.10
 
 dev_dependencies:
   build_runner:
@@ -83,6 +84,7 @@ flutter:
     - assets/animations/
     - assets/fonts/
     - assets/launcher/
+    - assets/data/
     - assets/images/carbon_score_background.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
