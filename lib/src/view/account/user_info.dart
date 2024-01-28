@@ -20,11 +20,8 @@ class UserInfo extends HookWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    final FocusNode _focusNode = FocusNode();
-    final GlobalKey _autocompleteKey = GlobalKey();
-
     final cars = useState<List<String>>(List<String>.empty());
-    final selectedCar = useState<String>("");
+    final carsMap = useState<Map<String, dynamic>>(<String, dynamic>{});
     final isLoading = useState(false);
 
     final nameController = useTextEditingController();
@@ -37,15 +34,14 @@ class UserInfo extends HookWidget {
             await rootBundle.loadString("assets/data/make_models.json");
         final Map<String, dynamic> data = await json.decode(response);
         cars.value = data.keys.toList();
+        carsMap.value = data;
       }
       readJson();
       return () {};
-
     }, const []);
 
     useEffect(() {
-      carMakeController.addListener(() {
-      });
+      carMakeController.addListener(() {});
     }, [carMakeController]);
 
     String? validateName(String? value) {
@@ -58,11 +54,8 @@ class UserInfo extends HookWidget {
     Future<void> submitInfo() async {
       final String name = nameController.text;
       final String surname = surnameController.text;
-      final String car = carMakeController.text.toString();
-
-      print(name);
-      print(surname);
-      print(car);
+      final String carName = carMakeController.text.toString();
+      final String carId = carsMap.value[carName];
 
       if (formKey.currentState!.validate()) {
         isLoading.value = true;
@@ -71,7 +64,7 @@ class UserInfo extends HookWidget {
           UserRepository profileRepository = locator<UserRepository>();
           AuthService authService = locator<AuthService>();
           final userId = authService.currentUser!.uid;
-          await profileRepository.addUser(userId, name, surname, "1234");
+          await profileRepository.addUser(userId, name, surname, carId);
 
           if (context.mounted) {
             Navigator.pushReplacementNamed(context, Routes.home.name);
@@ -134,7 +127,10 @@ class UserInfo extends HookWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CustomAutocomplete(textEditingController: carMakeController, options: cars.value,),
+                child: CustomAutocomplete(
+                  textEditingController: carMakeController,
+                  options: cars.value,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -154,6 +150,3 @@ class UserInfo extends HookWidget {
     );
   }
 }
-
-
-
