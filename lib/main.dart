@@ -52,7 +52,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ecohubTheme,
       localizationsDelegates: const [
-        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate

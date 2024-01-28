@@ -12,7 +12,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../../helpers/ui_helpers.dart';
 import '../../../injection_container.dart';
 import '../../application/auth_service.dart';
-import '../../infra/account/profile_repo.dart';
+import '../../infra/account/user_repo.dart';
 import '../../theme/colors.dart';
 import '../widgets/bottom_button.dart';
 import '../widgets/text_input.dart';
