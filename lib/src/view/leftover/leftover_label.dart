@@ -1,5 +1,5 @@
-import 'package:amc_2024/src/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum ProductType {
   meat,
@@ -14,18 +14,18 @@ class LeftoverLabel extends StatelessWidget {
 
   const LeftoverLabel({super.key, required this.productType});
 
-  String getNameForProductType(ProductType productType) {
+  String getNameForProductType(ProductType productType, BuildContext context) {
     switch (productType) {
       case ProductType.meat:
-        return "Viande";
+        return AppLocalizations.of(context)!.meat;
       case ProductType.fish:
-        return "Fish";
+        return AppLocalizations.of(context)!.fish;
       case ProductType.fruit:
-        return "Fruits";
+        return AppLocalizations.of(context)!.fruit;
       case ProductType.vegetable:
-        return "Veggies";
+        return AppLocalizations.of(context)!.vegetables;
       case ProductType.other:
-        return "Other";
+        return AppLocalizations.of(context)!.other;
       default:
         return "N/A";
     }
@@ -70,7 +70,7 @@ class LeftoverLabel extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              getNameForProductType(productType),
+              getNameForProductType(productType, context),
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 14.0,

@@ -56,6 +56,7 @@ dependencies:
   flutter_svg: ^2.0.9
   syncfusion_flutter_gauges: ^24.1.47
   geolocator: ^10.1.0
+  skeletonizer: ^1.0.1
 
 dev_dependencies:
   build_runner:

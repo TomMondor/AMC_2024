@@ -52,5 +52,12 @@
     "profile": "Profil",
     "personal_info": "Informations personnelles",
     "other": "Autres",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "meat": "Viande",
+    "fish": "Poisson",
+    "fruit": "Fruits",
+    "vegetables": "Légumes",
+    "leftover": "Restes",
+    "save_food": "Économisez sur les aliments presque périmés et aidez les entreprises à réduire leur gaspillage alimentaire!",
+    "could_save": "Vous pourriez économiser jusqu'à"
 }
