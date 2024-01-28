@@ -11,6 +11,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../injection_container.dart';
+import '../transport/use_car_trips_carbon.dart';
 import '../widgets/card_tip.dart';
 
 class Home extends HookWidget {
@@ -122,7 +123,7 @@ class Home extends HookWidget {
                     ),
               ),
             ),
-            const CardCarbon(score: 253),
+            const CardCarbon(score: 341),
             SizedBox(
               height: 125, // Set the height as needed
               child: ListView(
@@ -158,7 +159,7 @@ class Home extends HookWidget {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Summary",
+                "Quick Look",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -174,10 +175,10 @@ class Home extends HookWidget {
                     titleText: '${temperature.value}°C',
                     descriptionText: weatherCondition.value,
                     categoryText: "Temp."),
-                CardSummary(
+                const CardSummary(
                     topIcon: Icons.electric_bolt,
-                    titleText: '370',
-                    descriptionText: "KW",
+                    titleText: '757',
+                    descriptionText: "Wh",
                     categoryText: "Consumption"),
                 CardSummary(
                     topIcon: Icons.air,

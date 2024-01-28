@@ -24,8 +24,8 @@ class HydroData {
 
 class CoolChart extends HookWidget {
   List<Color> gradientColors = [
-    kcPrimary,
-    kcSecondary,
+    kcBlue,
+    kcBlueLight,
   ];
 
   final Function(int variation, bool hasIncreased, String pourcentageVariation)? methodFromParent;
@@ -103,6 +103,7 @@ class CoolChart extends HookWidget {
       fontSize: 16,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600,
+      color: kcBlue,
     );
     Widget text;
     switch (value.toInt()) {

@@ -57,7 +57,10 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
           ),
         ),
         bottom: TabBar(
-          labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
+          indicatorColor: kcBlue,
+          labelColor: kcBlue,
+          unselectedLabelColor: kcLightSecondary,
+          labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcBlue),
           indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
           tabs: const <Widget>[
@@ -136,17 +139,20 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                           const TipItem(
                                               descriptionText: "A slow period is starting, do you have a laundry load to do?",
                                               titleText: "Slack period",
-                                              iconData: Icons.local_laundry_service),
+                                              iconData: Icons.local_laundry_service,
+                                              color: kcBlue),
                                           verticalSpace(10),
                                           const TipItem(
                                               descriptionText: "There seems to be no one at home, would you like to turn down the heat?",
                                               titleText: "Nobody at home?",
-                                              iconData: Icons.heat_pump),
+                                              iconData: Icons.heat_pump,
+                                              color: kcBlue,),
                                           verticalSpace(10),
                                           const TipItem(
                                               descriptionText: "Confirm your work schedule to automatically reduce the heating in your absence.",
                                               titleText: "Heating an empty house?!",
-                                              iconData: Icons.whatshot),
+                                              iconData: Icons.whatshot,
+                                              color: kcBlue),
                                         ]),
                                       ),
                                       ElevatedButton(
@@ -160,7 +166,7 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                             },
                           );
                         },
-                        child: const Text("How can I help?")),
+                        child: const Text("How can I help?", style: TextStyle(color: kcBlue))),
                   )
                 ],
               ),
@@ -250,7 +256,7 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                             },
                           );
                         },
-                        child: const Text("What is my impact?"),
+                        child: const Text("What is my impact?", style: TextStyle(color: kcBlue)),
                       ))
                 ],
               ),

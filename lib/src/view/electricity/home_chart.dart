@@ -8,8 +8,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class HomeChart extends HookWidget {
   List<Color> gradientColors = [
-    kcPrimary,
-    kcSecondary,
+    kcBlue,
+    kcBlueLight,
   ];
 
   HomeChart({super.key});
@@ -107,13 +107,14 @@ class HomeChart extends HookWidget {
       fontSize: 16,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600,
+      color: kcBlue,
     );
     Widget text;
     switch (value.toInt()) {
-      case 7:
+      case 6:
         text = const Text('45 sec. ago', style: style);
         break;
-      case 14:
+      case 15:
         text = const Text('15 sec. ago', style: style);
         break;
       default:

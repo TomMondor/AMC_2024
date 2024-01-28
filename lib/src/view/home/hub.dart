@@ -65,7 +65,7 @@ class _MyHubPageState extends State<MyHubPage> {
             label: 'Transport',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.shopping_basket, color: kcPrimary,),
+            selectedIcon: Icon(Icons.shopping_basket, color: kcPrimary, ),
             icon: Icon(Icons.shopping_basket, color: kcLightSecondary,),
             label: 'Alimentation',
           ),
