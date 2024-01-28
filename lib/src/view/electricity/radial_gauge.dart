@@ -53,7 +53,7 @@ class _MultipleRangesExampleState extends State<RadialGaugeConsumption> {
                   startWidth: 0.15,
                   sizeUnit: GaugeSizeUnit.factor,
                   endWidth: 0.2,
-                  color: kcRed.withOpacity(0.7)),
+                  color: Colors.orange),
               GaugeRange(startValue: 60, endValue: 78, startWidth: 0.2, sizeUnit: GaugeSizeUnit.factor, endWidth: 0.25, color: kcRed),
             ]),
       ],
