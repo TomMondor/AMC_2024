@@ -5,7 +5,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../injection_container.dart';
 import '../../application/auth_service.dart';
-import '../../infra/account/profile_repo.dart';
+import '../../domain/user/user.dart';
+import '../../infra/account/user_repo.dart';
 import '../../theme/colors.dart';
 
 class Profile extends HookWidget {
