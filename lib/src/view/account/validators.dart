@@ -23,3 +23,10 @@ String? validatePassword(String? value) {
 
   return null;
 }
+
+String? validateName(String? value) {
+      if (value!.isEmpty) {
+        return 'The first name is required.';
+      }
+      return null;
+    }

@@ -1,13 +1,18 @@
+import 'dart:convert';
+
 import 'package:amc_2024/routes/routes.dart';
 import 'package:amc_2024/src/exceptions/exceptions.dart';
 import 'package:amc_2024/src/view/account/validators.dart';
+import 'package:amc_2024/src/view/widgets/custom_raw_auto_complete.dart';
 import 'package:amc_2024/src/view/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../helpers/ui_helpers.dart';
 import '../../../injection_container.dart';
 import '../../application/auth_service.dart';
+import '../../infra/account/profile_repo.dart';
 import '../../theme/colors.dart';
 import '../widgets/bottom_button.dart';
 import '../widgets/text_input.dart';
@@ -19,25 +24,60 @@ class Register extends HookWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+    final firstNameController = useTextEditingController();
+    final lastNameController = useTextEditingController();
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
+    final carMakeController = useTextEditingController();
 
+    final cars = useState<List<String>>(List<String>.empty());
     final isLoading = useState(false);
+
+    useEffect(() {
+      Future<void> readJson() async {
+        final String response =
+            await rootBundle.loadString("assets/data/make_models.json");
+        final Map<String, dynamic> data = await json.decode(response);
+        cars.value = data.keys.toList();
+      }
+
+      readJson();
+      return () {};
+    }, const []);
 
     Future<void> register() async {
       final email = emailController.text;
       final password = passwordController.text;
+      final String name = firstNameController.text;
+      final String surname = lastNameController.text;
+      final String car = carMakeController.text.toString();
 
       if (formKey.currentState!.validate()) {
         isLoading.value = true;
 
         try {
-          isLoading.value = false;
           AuthService authService = locator<AuthService>();
           await authService.register(email, password);
 
-          if (context.mounted) {
-            Navigator.pushReplacementNamed(context, Routes.userInfo.name);
+          try {
+            isLoading.value = false;
+            UserRepository profileRepository = locator<UserRepository>();
+            final userId = authService.currentUser!.uid;
+            await profileRepository.addUser(userId, name, surname, car);
+
+            if (context.mounted) {
+              Navigator.pushReplacementNamed(context, Routes.hub.name);
+            }
+          } on FirestoreException catch (e) {
+            isLoading.value = false;
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => ErrorDialog(
+                title: "Oops",
+                message: e.message,
+                buttonText: "OK",
+              ),
+            );
           }
         } on AuthenticationException catch (e) {
           isLoading.value = false;
@@ -54,9 +94,9 @@ class Register extends HookWidget {
     }
 
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.fromLTRB(24, 76, 24, 24),
           child: Form(
             key: formKey,
             child: Column(
@@ -66,17 +106,37 @@ class Register extends HookWidget {
                 Text(
                   "ECOHUB",
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: kcPrimary,
-                  ),
+                        color: kcPrimary,
+                      ),
                 ),
                 verticalSpace(36),
                 Text(
                   "Sign Up",
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    color: kcPrimaryVariant,
-                  ),
+                        color: kcPrimaryVariant,
+                      ),
                 ),
-                verticalSpace(40),
+                verticalSpace(36),
+                EchoHubTextInput(
+                  textInputAction: TextInputAction.next,
+                  controller: firstNameController,
+                  validator: validateName,
+                  keyboardType: TextInputType.name,
+                  labelText: 'First Name',
+                ),
+                verticalSpace(24),
+                EchoHubTextInput(
+                  textInputAction: TextInputAction.next,
+                  controller: lastNameController,
+                  validator: validateName,
+                  keyboardType: TextInputType.name,
+                  labelText: 'Last Name',
+                ),
+                verticalSpace(24),
+                CustomAutocomplete(
+                    textEditingController: carMakeController,
+                    options: cars.value),
+                verticalSpace(24),
                 EchoHubTextInput(
                   textInputAction: TextInputAction.next,
                   controller: emailController,
@@ -84,7 +144,7 @@ class Register extends HookWidget {
                   keyboardType: TextInputType.emailAddress,
                   labelText: 'Email',
                 ),
-                verticalSpace(32),
+                verticalSpace(24),
                 EchoHubTextInput(
                   textInputAction: TextInputAction.done,
                   controller: passwordController,
@@ -93,7 +153,7 @@ class Register extends HookWidget {
                   obscureText: true,
                   labelText: 'Password',
                 ),
-                verticalSpace(96),
+                verticalSpace(48),
                 BottomButton(
                   onPressed: () => register(),
                   title: 'Sign Up',
@@ -105,7 +165,7 @@ class Register extends HookWidget {
                       "You have an account?",
                       style: Theme.of(context)
                           .textTheme
-                          .bodyMedium!
+                          .bodySmall!
                           .copyWith(color: kcLightSecondary),
                     ),
                     TextButton(
@@ -115,7 +175,7 @@ class Register extends HookWidget {
                         'LOG IN',
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium!
+                            .bodySmall!
                             .copyWith(color: kcPrimaryVariant),
                       ),
                     ),
