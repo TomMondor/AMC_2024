@@ -124,7 +124,6 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                             context: context,
                             builder: (BuildContext context) {
                               return Container(
-                                height: 300,
                                 color: kcBackground,
                                 child: Center(
                                   child: Column(
@@ -134,18 +133,20 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                       Padding(
                                         padding: const EdgeInsets.only(left: 30, right: 30),
                                         child: Column(children: <Widget>[
-                                          verticalSpace(10),
                                           const TipItem(
-                                              descriptionText: "Save energy and costs by doing laundry outside 4 to 8 PM.",
-                                              titleText: "Smart Laundry Scheduling",
+                                              descriptionText: "A slow period is starting, do you have a laundry load to do?",
+                                              titleText: "Slack period",
                                               iconData: Icons.local_laundry_service),
                                           verticalSpace(10),
                                           const TipItem(
-                                              descriptionText:
-                                                  "We have detected many plugged electronic devices and chargers. Consider unplugging them to save standby power.",
-                                              titleText: "Unplug Devices",
-                                              iconData: Icons.phone_iphone),
+                                              descriptionText: "There seems to be no one at home, would you like to turn down the heat?",
+                                              titleText: "Nobody at home?",
+                                              iconData: Icons.heat_pump),
                                           verticalSpace(10),
+                                          const TipItem(
+                                              descriptionText: "Confirm your work schedule to automatically reduce the heating in your absence.",
+                                              titleText: "Heating an empty house?!",
+                                              iconData: Icons.whatshot),
                                         ]),
                                       ),
                                       ElevatedButton(
