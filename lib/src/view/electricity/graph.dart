@@ -28,6 +28,10 @@ class CoolChart extends HookWidget {
     kcSecondary,
   ];
 
+  final Function(int variation, bool hasIncreased, int pourcentageVariation)? methodFromParent;
+
+  CoolChart({super.key, this.methodFromParent});
+
   @override
   Widget build(BuildContext context) {
     final data = useState<HydroData?>(null);
@@ -55,6 +59,12 @@ class CoolChart extends HookWidget {
 
       HydroData newData =
           HydroData(dateStart: hydroData.dateStart, dateEnd: hydroData.dateEnd, mostRecentIndex: index, details: details, maxY: maxY);
+
+      int variation = (details5.values.demandeTotal! - details1.values.demandeTotal!).toInt();
+      bool hasIncreased = variation > 0 ? true : false;
+      int pourcentageVariation = ((details5.values.demandeTotal! / details1.values.demandeTotal!) * 100).toInt();
+      methodFromParent?.call(variation, hasIncreased, pourcentageVariation);
+
       return newData;
     }
 

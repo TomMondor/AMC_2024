@@ -12,11 +12,22 @@ class Electricity extends StatefulWidget {
 
 class _ElectricityState extends State<Electricity> with TickerProviderStateMixin {
   late final TabController _tabController;
+  late int cityGraphVariation = 0;
+  late bool cityGraphHasIncreased = false;
+  late int pourcentageVariation = 0;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+  }
+
+  void setCityGraphVariation(int variation, bool hasIncreased, int pourcentageVariation) {
+    setState(() {
+      cityGraphVariation = variation;
+      cityGraphHasIncreased = hasIncreased;
+      pourcentageVariation = pourcentageVariation;
+    });
   }
 
   @override
@@ -68,7 +79,7 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
                               Padding(
                                 padding: const EdgeInsets.only(right: 12.0),
                                 child: Text(
-                                  '182',
+                                  cityGraphVariation.toString(),
                                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: kcPrimaryVariant),
                                 ),
                               ),
@@ -93,7 +104,10 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
                       ),
                     ),
                   ),
-                  Text("25.6% INCREASE", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant)),
+                  Text(
+                    cityGraphHasIncreased ? '$pourcentageVariation% increase' : '$pourcentageVariation% decrease',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: ElevatedButton(
@@ -112,7 +126,10 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
                                       const Padding(
                                         padding: EdgeInsets.only(left: 30, right: 30),
                                         child: Column(children: <Widget>[
-                                          TipItem(descriptionText: "Test", titleText: "Test", iconData: Icons.ac_unit),
+                                          TipItem(
+                                              descriptionText: "Save energy and costs by doing laundry outside 4 to 8 PM",
+                                              titleText: "Smart Laundry Scheduling",
+                                              iconData: Icons.local_laundry_service),
                                         ]),
                                       ),
                                       ElevatedButton(
@@ -130,7 +147,7 @@ class _ElectricityState extends State<Electricity> with TickerProviderStateMixin
                   )
                 ],
               ),
-              CoolChart()
+              CoolChart(methodFromParent: setCityGraphVariation),
             ],
           ),
           const Center(

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:amc_2024/src/application/auth_service.dart';
 import 'package:amc_2024/src/infra/account/profile_repo.dart';
+import 'package:amc_2024/src/view/widgets/custom_raw_auto_complete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,6 +19,9 @@ class UserInfo extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+    final FocusNode _focusNode = FocusNode();
+    final GlobalKey _autocompleteKey = GlobalKey();
 
     final cars = useState<List<String>>(List<String>.empty());
     final selectedCar = useState<String>("");
@@ -35,9 +39,14 @@ class UserInfo extends HookWidget {
         cars.value = data.keys.toList();
       }
       readJson();
-      return () {
-      };
+      return () {};
+
     }, const []);
+
+    useEffect(() {
+      carMakeController.addListener(() {
+      });
+    }, [carMakeController]);
 
     String? validateName(String? value) {
       if (value!.isEmpty) {
@@ -49,7 +58,7 @@ class UserInfo extends HookWidget {
     Future<void> submitInfo() async {
       final String name = nameController.text;
       final String surname = surnameController.text;
-      final String car = carMakeController.text;
+      final String car = carMakeController.text.toString();
 
       print(name);
       print(surname);
@@ -125,42 +134,13 @@ class UserInfo extends HookWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Autocomplete<String>(
-                  fieldViewBuilder: (BuildContext context,
-                      TextEditingController carMakeController,
-                      FocusNode fieldFocusNode,
-                      VoidCallback onFieldSubmitted) {
-                    return TextFormField(
-                      controller: carMakeController,
-                      focusNode: fieldFocusNode,
-                      validator: validateName,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Car Model',
-                      ),
-                    );
-                  },
-                  optionsBuilder: (TextEditingValue carTextEditingValue) {
-                    return cars.value.where(
-                      (String option) {
-                        return option
-                            .toLowerCase()
-                            .contains(carTextEditingValue.text.toLowerCase());
-                      },
-                    );
-                  },
-                  onSelected: (String value) {
-                    // debugPrint('You just selected $value');
-                    // selectedCar.value = value;
-                    // FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                ),
+                child: CustomAutocomplete(textEditingController: carMakeController, options: cars.value,),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                     child: ElevatedButton(
-                      // ignore: avoid_print
+                        // ignore: avoid_print
                         onPressed: () => submitInfo(),
                         style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.black,
@@ -174,3 +154,6 @@ class UserInfo extends HookWidget {
     );
   }
 }
+
+
+

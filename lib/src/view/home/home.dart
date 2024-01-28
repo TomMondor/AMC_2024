@@ -33,8 +33,7 @@ class Home extends HookWidget {
 
     useEffect(() {
       Future<void> requestNotificationPermissions() async {
-        NotificationSettings settings =
-            await FirebaseMessaging.instance.requestPermission(
+        NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
           alert: true,
           announcement: false,
           badge: true,
@@ -72,18 +71,10 @@ class Home extends HookWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: const [
-                  CardTip(
-                      topIcon: Icons.pie_chart,
-                      descriptionText: "You can wash your clothes"),
-                  CardTip(
-                      topIcon: Icons.pie_chart,
-                      descriptionText: "You can wash your clothes"),
-                  CardTip(
-                      topIcon: Icons.pie_chart,
-                      descriptionText: "You can wash your clothes"),
-                  CardTip(
-                      topIcon: Icons.pie_chart,
-                      descriptionText: "You can wash your clothes"),
+                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
+                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
+                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
+                  CardTip(topIcon: Icons.pie_chart, descriptionText: "You can wash your clothes"),
                 ],
               ),
             ),
@@ -101,21 +92,9 @@ class Home extends HookWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CardSummary(
-                    topIcon: Icons.lightbulb,
-                    titleText: '27°C',
-                    descriptionText: "Sunny",
-                    categoryText: "Temp."),
-                CardSummary(
-                    topIcon: Icons.lightbulb,
-                    titleText: '370',
-                    descriptionText: "KW",
-                    categoryText: "Consumption"),
-                CardSummary(
-                    topIcon: Icons.lightbulb,
-                    titleText: '1-10',
-                    descriptionText: "Good",
-                    categoryText: "Air Quality"),
+                CardSummary(topIcon: Icons.lightbulb, titleText: '27°C', descriptionText: "Sunny", categoryText: "Temp."),
+                CardSummary(topIcon: Icons.lightbulb, titleText: '370', descriptionText: "KW", categoryText: "Consumption"),
+                CardSummary(topIcon: Icons.lightbulb, titleText: '1-10', descriptionText: "Good", categoryText: "Air Quality"),
               ],
             )
           ],
