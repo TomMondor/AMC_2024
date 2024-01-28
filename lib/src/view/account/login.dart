@@ -54,9 +54,9 @@ class Login extends HookWidget {
     }
 
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.fromLTRB(24, 76, 24, 24),
           child: Form(
             key: formKey,
             child: Column(
@@ -105,7 +105,7 @@ class Login extends HookWidget {
                       "You don't have an account?",
                       style: Theme.of(context)
                           .textTheme
-                          .bodyMedium!
+                          .bodySmall!
                           .copyWith(color: kcLightSecondary),
                     ),
                     TextButton(
@@ -115,7 +115,7 @@ class Login extends HookWidget {
                         'SIGN UP',
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium!
+                            .bodySmall!
                             .copyWith(color: kcPrimaryVariant),
                       ),
                     ),

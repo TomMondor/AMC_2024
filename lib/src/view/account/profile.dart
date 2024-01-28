@@ -1,5 +1,4 @@
 import 'package:amc_2024/helpers/ui_helpers.dart';
-import 'package:amc_2024/src/view/widgets/text_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -127,6 +126,31 @@ class Profile extends HookWidget {
                         ),
                         Text(
                           profile.value != null ? profile.value!.surname : "",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: kcSecondary,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    color: kcLightSecondary,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Car',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: kcPrimaryVariant,
+                                  ),
+                        ),
+                        Text(
+                          profile.value != null ? profile.value!.carId : "",
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: kcSecondary,
