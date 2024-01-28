@@ -1,9 +1,8 @@
 import 'package:amc_2024/src/theme/colors.dart';
 import 'package:amc_2024/src/view/electricity/electricity.dart';
 import 'package:amc_2024/src/view/home/home.dart';
+import 'package:amc_2024/src/view/leftover/leftover.dart';
 import 'package:amc_2024/src/view/transport/transport.dart';
-import 'package:amc_2024/src/view/widgets/card_carbon.dart';
-import 'package:amc_2024/src/view/widgets/card_summary.dart';
 import 'package:flutter/material.dart';
 
 class MyHubPage extends StatefulWidget {
@@ -18,23 +17,12 @@ class MyHubPage extends StatefulWidget {
 class _MyHubPageState extends State<MyHubPage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const Electricity(),
     const Transport(),
-    const SafeArea(
-      child: Text(
-        'Index 3: Alimentation',
-        style: optionStyle,
-      ),
-    ),
-    const Text(
-      'Index 4: Transport',
-      style: optionStyle,
-    ),
+    const Leftover(),
+    const Leftover(), //TODO: Change here for profil view
   ];
 
   void _onItemTapped(int index) {
