@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('en'),
       ],
-      initialRoute: Routes.startup.name,
+      initialRoute: Routes.userInfo.name,
       routes: appRoutes,
     );
   }

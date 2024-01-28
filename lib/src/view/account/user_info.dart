@@ -22,6 +22,7 @@ class UserInfo extends HookWidget {
 
     final nameController = useTextEditingController();
     final surnameController = useTextEditingController();
+    final carMakeController = useTextEditingController();
 
     useEffect(() {
       Future<void> readJson() async {
@@ -39,7 +40,7 @@ class UserInfo extends HookWidget {
 
     String? validateName(String? value) {
       if (value!.isEmpty) {
-        return 'Please enter your name';
+        return 'Can not be empty';
       }
       return null;
     }
@@ -47,7 +48,7 @@ class UserInfo extends HookWidget {
     Future<void> submitInfo() async {
       final String name = nameController.text;
       final String surname = surnameController.text;
-      final String car = selectedCar.value;
+      final String car = carMakeController.text;
 
       print(name);
       print(surname);
@@ -124,6 +125,20 @@ class UserInfo extends HookWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Autocomplete<String>(
+                  fieldViewBuilder: (BuildContext context,
+                      TextEditingController carMakeController,
+                      FocusNode fieldFocusNode,
+                      VoidCallback onFieldSubmitted) {
+                    return TextFormField(
+                      controller: carMakeController,
+                      focusNode: fieldFocusNode,
+                      validator: validateName,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Car Model',
+                      ),
+                    );
+                  },
                   optionsBuilder: (TextEditingValue carTextEditingValue) {
                     return cars.value.where(
                       (String option) {
@@ -134,9 +149,9 @@ class UserInfo extends HookWidget {
                     );
                   },
                   onSelected: (String value) {
-                    debugPrint('You just selected $value');
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    selectedCar.value = value;
+                    // debugPrint('You just selected $value');
+                    // selectedCar.value = value;
+                    // FocusScope.of(context).requestFocus(FocusNode());
                   },
                 ),
               ),
