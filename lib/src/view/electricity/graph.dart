@@ -108,10 +108,10 @@ class CoolChart extends HookWidget {
     Widget text;
     switch (value.toInt()) {
       case 1:
-        text = const Text('45 min. ago', style: style);
+        text = const Text('45 min.', style: style);
         break;
       case 3:
-        text = const Text('15 min. ago', style: style);
+        text = const Text('15 min.', style: style);
         break;
       default:
         text = const Text('', style: style);

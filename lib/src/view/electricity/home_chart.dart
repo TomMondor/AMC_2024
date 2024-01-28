@@ -112,10 +112,10 @@ class HomeChart extends HookWidget {
     Widget text;
     switch (value.toInt()) {
       case 6:
-        text = const Text('45 sec. ago', style: style);
+        text = const Text('45 sec.', style: style);
         break;
       case 15:
-        text = const Text('15 sec. ago', style: style);
+        text = const Text('15 sec.', style: style);
         break;
       default:
         text = const Text('', style: style);
