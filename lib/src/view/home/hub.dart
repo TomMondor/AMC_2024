@@ -22,9 +22,9 @@ class _MyHubPageState extends State<MyHubPage> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const Transport(),
     const Home(name: "Clement"),
     const Electricity(),
+    const Transport(),
     const SafeArea(
       child: Text(
         'Index 3: Alimentation',
