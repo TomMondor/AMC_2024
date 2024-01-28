@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 
 class CarbonApi {
   final String url = "https://www.carboninterface.com/api/v1/estimates";
-  final String apiKey = "Su6jWWqaEwSUBszEgNXpYA";
+  final String apiKey = "iUNiLxws0vgJsyTzKZgw";
   final HttpClient httpClient = locator<HttpClient>();
 
   Future<VehicleModel> postVehicleCarbonFootprint(
