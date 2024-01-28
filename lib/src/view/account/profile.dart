@@ -2,6 +2,7 @@ import 'package:amc_2024/helpers/ui_helpers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../injection_container.dart';
 import '../../application/auth_service.dart';
@@ -43,7 +44,7 @@ class Profile extends HookWidget {
         title: Align(
           alignment: Alignment.center,
           child: Text(
-            'Profile',
+            AppLocalizations.of(context)!.profile,
             style: Theme.of(context)
                 .textTheme
                 .displayLarge!
@@ -64,10 +65,12 @@ class Profile extends HookWidget {
                 height: 120,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(1000),
-                  child: profile.value != null ? SvgPicture.network(
-                    'https://source.boringavatars.com/beam/120/${profile.value!.name}${profile.value!.surname}',
-                    fit: BoxFit.cover,
-                  ) : Container(),
+                  child: profile.value != null
+                      ? SvgPicture.network(
+                          'https://source.boringavatars.com/beam/120/${profile.value!.name}${profile.value!.surname}',
+                          fit: BoxFit.cover,
+                        )
+                      : Container(),
                 ),
               ),
               verticalSpace(16),
@@ -86,7 +89,7 @@ class Profile extends HookWidget {
                 scrollDirection: Axis.vertical,
                 children: [
                   Text(
-                    'PERSONAL INFO',
+                    AppLocalizations.of(context)!.personal_info.toUpperCase(),
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -98,7 +101,7 @@ class Profile extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'First Name',
+                          AppLocalizations.of(context)!.first_name,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: kcPrimaryVariant,
@@ -123,7 +126,7 @@ class Profile extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Last Name',
+                          AppLocalizations.of(context)!.last_name,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: kcPrimaryVariant,
@@ -148,7 +151,7 @@ class Profile extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Car',
+                          AppLocalizations.of(context)!.car,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: kcPrimaryVariant,
@@ -169,7 +172,7 @@ class Profile extends HookWidget {
                   ),
                   verticalSpace(16),
                   Text(
-                    'OTHER',
+                    AppLocalizations.of(context)!.other.toUpperCase(),
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -194,7 +197,7 @@ class Profile extends HookWidget {
                                 width: 16,
                               ),
                               Text(
-                                'Logout',
+                                AppLocalizations.of(context)!.logout,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

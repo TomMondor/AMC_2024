@@ -9,6 +9,7 @@ import 'package:amc_2024/src/view/transport/use_trip_history.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Transport extends HookWidget {
   const Transport({super.key});
@@ -40,7 +41,7 @@ class Transport extends HookWidget {
           title: Align(
             alignment: Alignment.center,
             child: Text(
-              'Transport',
+              AppLocalizations.of(context)!.transport,
               style: Theme.of(context)
                   .textTheme
                   .displayLarge!
@@ -54,7 +55,7 @@ class Transport extends HookWidget {
             child: Column(
               children: [
                 verticalSpace(24),
-                Text('My Footprint',
+                Text(AppLocalizations.of(context)!.my_footprint,
                     style: Theme.of(context)
                         .textTheme
                         .labelLarge!
@@ -97,7 +98,7 @@ class Transport extends HookWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                   child: Column(children: [
-                    Text("CO2 in the last month",
+                    Text(AppLocalizations.of(context)!.co2,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!
@@ -117,7 +118,8 @@ class Transport extends HookWidget {
                             padding: const EdgeInsets.all(18.0),
                             child: NumberLabel(
                                 score: walkDistance.value,
-                                descriptionText: 'Walk'),
+                                descriptionText:
+                                    AppLocalizations.of(context)!.walk),
                           ),
                         ),
                         Container(
@@ -130,7 +132,8 @@ class Transport extends HookWidget {
                             padding: const EdgeInsets.all(18.0),
                             child: NumberLabel(
                                 score: carDistance.value,
-                                descriptionText: 'Car'),
+                                descriptionText:
+                                    AppLocalizations.of(context)!.car),
                           ),
                         ),
                         Container(
@@ -143,7 +146,8 @@ class Transport extends HookWidget {
                             padding: const EdgeInsets.all(16.0),
                             child: NumberLabel(
                                 score: publicDistance.value,
-                                descriptionText: 'Public'),
+                                descriptionText:
+                                    AppLocalizations.of(context)!.public),
                           ),
                         ),
                       ],
@@ -152,7 +156,7 @@ class Transport extends HookWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'What does it mean?',
+                        AppLocalizations.of(context)!.means,
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                               color: kcPrimaryVariant,
                             ),
@@ -175,34 +179,38 @@ class Transport extends HookWidget {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          child: const TipItem(
+                          child: TipItem(
                             iconData: Icons.directions_walk,
-                            titleText: 'Well done!',
-                            descriptionText: 'You walked 10% more this month!',
+                            titleText: AppLocalizations.of(context)!.well_done,
+                            descriptionText:
+                                AppLocalizations.of(context)!.walked_more,
                             color: kcGold,
                           ),
                         ),
                       ),
-                      const TipItem(
+                      TipItem(
                           iconData: Icons.directions_bus,
-                          titleText: '38km of car to do by bus',
+                          titleText: AppLocalizations.of(context)!.bus_title,
                           descriptionText:
-                              'Some of your car trips would have been quicker by bus!'),
-                      const TipItem(
+                              AppLocalizations.of(context)!.bus_text),
+                      TipItem(
                           iconData: Icons.directions_walk,
-                          titleText: 'Missed \$11.50 savings!',
+                          titleText:
+                              AppLocalizations.of(context)!.savings_title,
                           descriptionText:
-                              'In the last month, these are your car trips of 2km or less, which you could have made on foot.'),
-                      const TipItem(
+                              AppLocalizations.of(context)!.savings_text),
+                      TipItem(
                           iconData: Icons.directions_bus,
-                          titleText: 'Cheap bus tickets',
+                          titleText:
+                              AppLocalizations.of(context)!.cheap_bus_title,
                           descriptionText:
-                              'There is a sale on the annual bus pass for students. You can save up to 50% on your bus tickets.'),
-                      const TipItem(
+                              AppLocalizations.of(context)!.cheap_bus_text),
+                      TipItem(
                           iconData: Icons.local_taxi,
-                          titleText: 'Carpool to Montreal',
-                          descriptionText:
-                              'Your calendar suggests that you are going to Montreal for AMC 2024. You can carpool with other students and save up to 275kg of CO2.'),
+                          titleText: AppLocalizations.of(context)!
+                              .carpool_montreal_title,
+                          descriptionText: AppLocalizations.of(context)!
+                              .carpool_montreal_text),
                     ],
                   ),
                 ),

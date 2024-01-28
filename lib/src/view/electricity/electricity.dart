@@ -6,6 +6,7 @@ import 'package:amc_2024/src/view/electricity/radial_gauge.dart';
 import 'package:amc_2024/src/view/transport/tip_item.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Electricity extends StatefulWidget {
   const Electricity({super.key});
@@ -14,7 +15,8 @@ class Electricity extends StatefulWidget {
   State<Electricity> createState() => _ElectricityState();
 }
 
-class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClientMixin<Electricity>, TickerProviderStateMixin {
+class _ElectricityState extends State<Electricity>
+    with AutomaticKeepAliveClientMixin<Electricity>, TickerProviderStateMixin {
   late final TabController _tabController;
   late int cityGraphVariation = 0;
   late bool cityGraphHasIncreased = false;
@@ -29,7 +31,8 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
     _tabController = TabController(length: 2, vsync: this);
   }
 
-  void setCityGraphVariation(int variation, bool hasIncreased, String pourcentageVariation) {
+  void setCityGraphVariation(
+      int variation, bool hasIncreased, String pourcentageVariation) {
     setState(() {
       cityGraphVariation = variation;
       cityGraphHasIncreased = hasIncreased;
@@ -52,22 +55,26 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
         title: Align(
           alignment: Alignment.center,
           child: Text(
-            'Power Consumption',
-            style: Theme.of(context).textTheme.displayLarge!.copyWith(color: kcPrimaryVariant),
+            AppLocalizations.of(context)!.power_consumption,
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(color: kcPrimaryVariant),
           ),
         ),
         bottom: TabBar(
           indicatorColor: kcBlue,
           labelColor: kcBlue,
           unselectedLabelColor: kcLightSecondary,
-          labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcBlue),
+          labelStyle:
+              Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcBlue),
           indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
-          tabs: const <Widget>[
+          tabs: <Widget>[
             Tab(
-              text: "My City",
+              text: AppLocalizations.of(context)!.my_city,
             ),
-            Tab(text: "My Hub")
+            Tab(text: AppLocalizations.of(context)!.my_hub)
           ],
         ),
       ),
@@ -91,7 +98,10 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                 padding: const EdgeInsets.only(right: 12.0),
                                 child: AnimatedDigitWidget(
                                   value: cityGraphVariation,
-                                  textStyle: Theme.of(context).textTheme.headlineLarge!.copyWith(color: kcPrimaryVariant),
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge!
+                                      .copyWith(color: kcPrimaryVariant),
                                 ),
                               ),
                               Column(
@@ -99,13 +109,22 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Icon(
-                                    cityGraphHasIncreased ? Icons.expand_less : Icons.expand_more,
-                                    color: cityGraphHasIncreased ? kcRed : kcPrimary,
+                                    cityGraphHasIncreased
+                                        ? Icons.expand_less
+                                        : Icons.expand_more,
+                                    color: cityGraphHasIncreased
+                                        ? kcRed
+                                        : kcPrimary,
                                     size: 40.0,
                                   ),
                                   Text(
                                     'kWh',
-                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: kcPrimaryVariant, fontSize: 30),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                            color: kcPrimaryVariant,
+                                            fontSize: 30),
                                   ),
                                 ],
                               ),
@@ -116,8 +135,13 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                     ),
                   ),
                   Text(
-                    cityGraphHasIncreased ? '$cityGraphPourcentageVariation% increase' : '$cityGraphPourcentageVariation% decrease',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
+                    cityGraphHasIncreased
+                        ? '$cityGraphPourcentageVariation% ${AppLocalizations.of(context)!.increase}'
+                        : '$cityGraphPourcentageVariation% ${AppLocalizations.of(context)!.decrease}',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: kcPrimaryVariant),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
@@ -130,27 +154,43 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                 color: kcBackground,
                                 child: Center(
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 30, right: 30),
+                                        padding: const EdgeInsets.only(
+                                            left: 30, right: 30),
                                         child: Column(children: <Widget>[
-                                          const TipItem(
-                                              descriptionText: "A slow period is starting, do you have a laundry load to do?",
-                                              titleText: "Slack period",
-                                              iconData: Icons.local_laundry_service,
+                                          TipItem(
+                                              descriptionText:
+                                                  AppLocalizations.of(context)!
+                                                      .slack_text,
+                                              titleText:
+                                                  AppLocalizations.of(context)!
+                                                      .slack_title,
+                                              iconData:
+                                                  Icons.local_laundry_service,
                                               color: kcBlue),
                                           verticalSpace(10),
-                                          const TipItem(
-                                              descriptionText: "There seems to be no one at home, would you like to turn down the heat?",
-                                              titleText: "Nobody at home?",
-                                              iconData: Icons.heat_pump,
-                                              color: kcBlue,),
+                                          TipItem(
+                                            descriptionText:
+                                                AppLocalizations.of(context)!
+                                                    .nobody_text,
+                                            titleText:
+                                                AppLocalizations.of(context)!
+                                                    .nobody_title,
+                                            iconData: Icons.heat_pump,
+                                            color: kcBlue,
+                                          ),
                                           verticalSpace(10),
-                                          const TipItem(
-                                              descriptionText: "Confirm your work schedule to automatically reduce the heating in your absence.",
-                                              titleText: "Heating an empty house?!",
+                                          TipItem(
+                                              descriptionText:
+                                                  AppLocalizations.of(context)!
+                                                      .heating_text,
+                                              titleText:
+                                                  AppLocalizations.of(context)!
+                                                      .heating_title,
                                               iconData: Icons.whatshot,
                                               color: kcBlue),
                                         ]),
@@ -166,7 +206,8 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                             },
                           );
                         },
-                        child: const Text("How can I help?", style: TextStyle(color: kcBlue))),
+                        child: Text(AppLocalizations.of(context)!.can_help,
+                            style: const TextStyle(color: kcBlue))),
                   )
                 ],
               ),
@@ -190,7 +231,10 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                 padding: const EdgeInsets.only(right: 12.0),
                                 child: AnimatedDigitWidget(
                                   value: 757,
-                                  textStyle: Theme.of(context).textTheme.headlineLarge!.copyWith(color: kcPrimaryVariant),
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge!
+                                      .copyWith(color: kcPrimaryVariant),
                                 ),
                               ),
                               Column(
@@ -204,7 +248,12 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                                   ),
                                   Text(
                                     'Wh',
-                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: kcPrimaryVariant, fontSize: 30),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                            color: kcPrimaryVariant,
+                                            fontSize: 30),
                                   ),
                                 ],
                               ),
@@ -215,8 +264,11 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                     ),
                   ),
                   Text(
-                    '47.3% decrease',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant),
+                    '47.3% ${AppLocalizations.of(context)!.decrease}',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: kcPrimaryVariant),
                   ),
                   Padding(
                       padding: const EdgeInsets.only(top: 20.0),
@@ -226,28 +278,41 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                             context: context,
                             builder: (BuildContext context) {
                               return Container(
+                                padding: const EdgeInsets.all(16),
                                 color: kcBackground,
                                 child: Center(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Padding(
-                                        padding: const EdgeInsets.only(bottom: 8, top: 20),
-                                        child: Text("You are doing great! Keep it up!",
-                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: kcPrimaryVariant)),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 30, right: 30),
-                                        child: Center(
-                                          child: Text("You are generating approximately 757 Wh, which translates to 0.5kg of CO2 per day.",
-                                              style: Theme.of(context).textTheme.bodySmall!.copyWith(color: kcPrimaryVariant)),
+                                        padding: const EdgeInsets.only(
+                                            bottom: 8, top: 20),
+                                        child: SizedBox(
+                                          width: screenWidth(context),
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .doing_great,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      color: kcPrimaryVariant)),
                                         ),
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 30, right: 30),
-                                        child: SafeArea(
-                                          child: RadialGaugeConsumption(),
-                                        ),
+                                      Center(
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .generating_co2,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    color: kcPrimaryVariant)),
+                                      ),
+                                      const SizedBox(
+                                        width: 200,
+                                        height: 200,
+                                        child: RadialGaugeConsumption(),
                                       ),
                                     ],
                                   ),
@@ -256,7 +321,8 @@ class _ElectricityState extends State<Electricity> with AutomaticKeepAliveClient
                             },
                           );
                         },
-                        child: const Text("What is my impact?", style: TextStyle(color: kcBlue)),
+                        child: Text(AppLocalizations.of(context)!.my_impact,
+                            style: const TextStyle(color: kcBlue)),
                       ))
                 ],
               ),
