@@ -25,7 +25,6 @@ void main() async {
   );
 
   final token = await FirebaseMessaging.instance.getToken();
-  print('token: $token');
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
