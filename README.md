@@ -25,4 +25,3 @@ Here is the procedure to update the app Icon:
 ## Translation
 
 To add translation text, modify the files in the `lib/l10n` folder. When modifying those files, run the `flutter gen-l10n` command.
-
