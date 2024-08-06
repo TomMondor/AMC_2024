@@ -1,6 +1,27 @@
-# amc_2024
+# AMC_2024
 
-We win
+## Context
+
+This is a copy of my team's repository for the AMC mobile apps hackathon, which we won in January 2024. This competition is organized by a club from ETS, in Montreal.
+
+We had 24 hours to create a mobile app based on the theme "_Smart cities for a sustainable future_".
+
+We envisioned a virtual assistant that analyzes your environmental impact in every aspect of your life: residence, transportation, and food. It suggests personalized actions that allow you to protect the environment while saving time or money, as these are the primary motivators for people. Our application pulls data from several APIs (Hydro-Québec, CarbonInterface, Google Places API, etc.) and displays real-time data.
+
+### Contributors
+
+- [Christophe Duchesne](https://github.com/cduchesne1)
+- [Jonathan Bessette](https://github.com/JoBess7)
+- [David Ferland](https://github.com/Davidferl)
+- [BaboucheOne](https://github.com/BaboucheOne)
+
+![](./docs/AMC_2024_winners.jpg)
+
+### Screenshots
+
+![](./docs/merged_screenshots_part1.png)
+
+![](./docs/merged_screenshots_part2.png)
 
 ## Getting Started 🚀
 
